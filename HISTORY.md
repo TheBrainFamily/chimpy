@@ -1,3 +1,11 @@
+# 0.52.0
+
+* add chimpy binary (Łukasz Gandecki) 
+* Update _config.yml (Sam Hatoum) 
+* Set theme jekyll-theme-cayman (Sam Hatoum) 
+* Initiates the migration (Sam Hatoum) 
+* Adds the release notes for v0.51.1 (Sam Hatoum) 
+
 # 0.51.1
 
 * Enable minor updates to chromedriver to support chrome 65 (#681) (Colin McCulloch) 
