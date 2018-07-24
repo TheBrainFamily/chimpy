@@ -43,7 +43,7 @@
   "main": "dist/lib/chimp.js",
   "bin": {
     "chimp": "./bin/chimp.js",
-    "chimpy": "./bin/chimp.js"
+    "chimpy": "./bin/chimpy.js"
   },
   "mocha": {
     "files": [
