@@ -1,5 +1,5 @@
 {
-  "name": "chimp",
+  "name": "chimpy",
   "version": "0.51.1",
   "description": "Develop acceptance tests & end-to-end tests with realtime feedback.",
   "keywords": [
@@ -18,11 +18,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xolvio/chimp"
+    "url": "https://github.com/TheBrainFamily/chimpy"
   },
   "homepage": "",
   "bugs": {
-    "url": "https://github.com/xolvio/chimp/issues"
+    "url": "https://github.com/TheBrainFamily/chimpy/issues"
   },
   "watch": {
     "prepublish": "src/{lib,bin}/**/*.js"
@@ -42,7 +42,8 @@
   },
   "main": "dist/lib/chimp.js",
   "bin": {
-    "chimp": "./bin/chimp.js"
+    "chimp": "./bin/chimp.js",
+    "chimpy": "./bin/chimp.js"
   },
   "mocha": {
     "files": [
