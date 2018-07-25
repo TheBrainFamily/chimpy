@@ -19,7 +19,6 @@ For more details about this decision, [please see the full announcement here.](T
 
 | Pages |
 |:--- |
-| **[Home](README)** |
 | **[Installation](installation)** | 
 | **[Configuration](configuration)** | 
 | **[Getting started Cucumber](getting-started-cucumber)** | 
