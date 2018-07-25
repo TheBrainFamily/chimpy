@@ -1,3 +1,5 @@
+| **[Home](/chimpy)** |
+
 You can debug your Cucumber tests or Chimpy with the node debugger.
 
 ###[Debug Chimpy](#debug-chimpy)

@@ -1,3 +1,5 @@
+| **[Home](/chimpy)** |
+
 ## Getting Started
 
 Follow the [Installation](doc:installation) instructions.

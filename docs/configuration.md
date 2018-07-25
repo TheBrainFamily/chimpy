@@ -1,3 +1,5 @@
+| **[Home](/chimpy)** |
+
 Chimpy and the integrated packages are all configurable through the command-line. Although Chimpy is somewhat opinionated, it tries to be as flexible as possible for advanced users. 
 
 See the [default Chimpy configuration](https://github.com/xolvio/chimpy/blob/master/src/bin/default.js) file for the available options. You can provide any of the options in that file via the command-line also by prefixing the listed option with `--`.

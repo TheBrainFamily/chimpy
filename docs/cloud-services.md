@@ -1,3 +1,5 @@
+| **[Home](/chimpy)** |
+
 Since Chimpy uses Selenium, you get the benefit of using all of the cloud based testing services.
 
 Here is a sample command that you could use to setup a connection with Sauce Labs:

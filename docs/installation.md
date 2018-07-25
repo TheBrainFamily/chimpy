@@ -1,4 +1,4 @@
-| **[Home](/chimpy/README)** |
+| **[Home](/chimpy)** |
 
 ## Prerequisite
 

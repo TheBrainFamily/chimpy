@@ -1,4 +1,4 @@
-| **[Home](/chimpy/README)** |
+| **[Home](/chimpy)** |
 
 With Chimpy you can specify the reporter used to generate test results in each of the integrated frameworks.
 

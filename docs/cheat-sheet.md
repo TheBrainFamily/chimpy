@@ -1,3 +1,5 @@
+| **[Home](/chimpy)** |
+
 The following is a list of examples of how to do common tasks and assertions using:
 * Webdriver.io
 * Synchronous execution
