@@ -17,24 +17,16 @@ For more details about this decision, [please see the full announcement here.](T
 
 ---
 
-| Pages |
-|:--- |
-| **[Installation](installation)** | 
-| **[Configuration](configuration)** | 
-| **[Getting started Cucumber](getting-started-cucumber)** | 
-| **[Getting started Jasmine](getting-started-jasmine)** | 
-| **[Getting started Mocha](getting-started-mocha)** | 
-| **[Meteor](chimp-meteor)** | 
-| **[Reporting](reporting)** |
-| **[Cheatsheet](cheat-sheet)** |  
-| **[Debugging](debugging)** | 
-| **[Cloud Services](cloud-services)** |
-| **[Jasmine Support](jasmine-support)** | 
-| **[Migrate To Synchronous](migrate-to-synchronous)** | 
-| **[Multi Browser Testing](multi-browser-testing)** | 
-| **[Synchronous Tests](synchronous-tests)** | 
-| **[Further Reading](further-reading)** | 
-| **[Credits](credits)** | 
+| Documentation | |
+|:--- | :--- |
+| **[Installation](installation)** | **[Configuration](configuration)** | 
+| **[Chimp + Cucumber](getting-started-cucumber)** | **[Reporting](reporting)** | 
+| **[Chimp + Mocha](getting-started-mocha)** | **[Debugging](debugging)** |
+| **[Chimp + Jasmine](getting-started-jasmine)** | **[Jasmine Support](jasmine-support)** |
+| **[Chimp + Meteor](chimp-meteor)** | **[Multi Browser Testing](multi-browser-testing)** |
+| **[Synchronous Tests](synchronous-tests)** | **[Migrate To Synchronous](migrate-to-synchronous)** |    
+ **[Cloud Services](cloud-services)** | **[Cheatsheet](cheat-sheet)** | 
+| **[Further Reading](further-reading)** | **[Credits](credits)** | 
 
 ---
 
