@@ -1,8 +1,10 @@
 theme: jekyll-theme-cayman
 
 title: Chimpy.js
+
 description: An awesome developer-centric experience to writing tests with realtime feedback using Mocha, Jasmine or Cucumber.js
-show_downloads: "false"
+
+show_downloads: false
 
 plugins:
   - jekyll-sitemap
