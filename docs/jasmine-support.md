@@ -1,4 +1,4 @@
-| **[Home](README)** |
+| **[Home](/chimpy/README)** |
 
 Chimpy supports the latest version of Jasmine. Currently this is version 2.4.x.
 

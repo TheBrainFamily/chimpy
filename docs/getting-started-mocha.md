@@ -1,4 +1,4 @@
-| **[Home](README)** |
+| **[Home](/chimpy/README)** |
 
 Follow the [Installation](installation) instructions here.
 

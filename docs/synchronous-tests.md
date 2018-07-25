@@ -1,4 +1,4 @@
-| **[Home](README)** |
+| **[Home](/chimpy/README)** |
 
 With Chimpy you can write your tests in a synchronous style. So you don't have to deal with confusing promise chains or callback hell.
 

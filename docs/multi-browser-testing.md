@@ -1,4 +1,4 @@
-| **[Home](README)** |
+| **[Home](/chimpy/README)** |
 
 To test using multiple browsers you need to use environment variable like so:
 

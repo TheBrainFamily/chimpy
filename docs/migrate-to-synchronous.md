@@ -1,4 +1,4 @@
-| **[Home](README)** |
+| **[Home](/chimpy/README)** |
 
 If you have any trouble with the migration, let us know via [GitHub issue](https://github.com/TheBrainFamily/chimpy/issues)
 
