@@ -1,4 +1,6 @@
-Follow the [Installation](/installation.md) instructions here.
+| **[Home](README)** |
+
+Follow the [Installation](installation) instructions here.
 
 # 1. Develop
 

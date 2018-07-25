@@ -1,3 +1,5 @@
+| **[Home](README)** |
+
 With Chimpy you can write your tests in a synchronous style. So you don't have to deal with confusing promise chains or callback hell.
 
 All the APIs that are shipped with Chimp can be used in a synchronous style by default. This includes the WebdriverIO commands, request module, and the DDP client.

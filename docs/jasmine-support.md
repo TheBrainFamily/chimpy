@@ -1,3 +1,5 @@
+| **[Home](README)** |
+
 Chimpy supports the latest version of Jasmine. Currently this is version 2.4.x.
 
 You can enable Jasmine support by starting Chimpy with with `--jasmine` flag or setting `jasmine: true` in your Chimpy config file.
