@@ -1,0 +1,360 @@
+[
+  {
+    "elements": [
+      {
+        "id": "test-to-rerun;rerun-this-one-even-though-it-passes",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "Rerun this one even though it passes",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I do something \"1 2\"",
+            "result": {
+              "status": "passed",
+              "duration": 708948
+            },
+            "line": 3,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:2"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I pass \"hello 2\"",
+            "result": {
+              "status": "passed",
+              "duration": 177211
+            },
+            "line": 4,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:7"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 171090
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/node_modules/chimp/dist/lib/cucumberjs/hooks.js:68"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": "test-to-rerun;rerun-this-one",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Rerun this one",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I do something \"2 2\"",
+            "result": {
+              "status": "passed",
+              "duration": 170632
+            },
+            "line": 7,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:2"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I pass \"hello 2\"",
+            "result": {
+              "status": "passed",
+              "duration": 43798
+            },
+            "line": 8,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:7"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 89190
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/node_modules/chimp/dist/lib/cucumberjs/hooks.js:68"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": "test-to-rerun;rerun-also-this-one-even-though-it-passes",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Rerun also this one even though it passes",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I do something \"3 2\"",
+            "result": {
+              "status": "passed",
+              "duration": 83121
+            },
+            "line": 11,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:2"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I pass \"hello world 2\"",
+            "result": {
+              "status": "passed",
+              "duration": 40536
+            },
+            "line": 12,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:7"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 48210
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/node_modules/chimp/dist/lib/cucumberjs/hooks.js:68"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "test-to-rerun",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Test to rerun",
+    "tags": [],
+    "uri": "/Users/user/projects/prototypes/chimpRerun/features/passingTest.feature"
+  },
+  {
+    "elements": [
+      {
+        "id": "test-to-skip-in-second-run;rerun-this-one-even-though-it-passes",
+        "keyword": "Scenario",
+        "line": 2,
+        "name": "Rerun this one even though it passes",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I do something \"1 1\"",
+            "result": {
+              "status": "passed",
+              "duration": 168017
+            },
+            "line": 3,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:2"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I pass \"hello 1\"",
+            "result": {
+              "status": "passed",
+              "duration": 77752
+            },
+            "line": 4,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:7"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 69941
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/node_modules/chimp/dist/lib/cucumberjs/hooks.js:68"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": "test-to-skip-in-second-run;rerun-this-one",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Rerun this one",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I do something \"2 1\"",
+            "result": {
+              "status": "passed",
+              "duration": 123749
+            },
+            "line": 7,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:2"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I fail",
+            "result": {
+              "status": "failed",
+              "duration": 215163,
+              "error_message": "Error: failure\n    at World.<anonymous> (/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:13:11)\n    at /Users/user/projects/prototypes/chimpRerun/node_modules/meteor-promise/fiber_pool.js:43:40"
+            },
+            "line": 8,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:11"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 74676
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/node_modules/chimp/dist/lib/cucumberjs/hooks.js:68"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": "test-to-skip-in-second-run;rerun-this-one-also",
+        "keyword": "Scenario",
+        "line": 10,
+        "name": "Rerun this one also",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I do something \"3 1\"",
+            "result": {
+              "status": "passed",
+              "duration": 178127
+            },
+            "line": 11,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:2"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I fail",
+            "result": {
+              "status": "failed",
+              "duration": 67505,
+              "error_message": "Error: failure\n    at World.<anonymous> (/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:13:11)\n    at /Users/user/projects/prototypes/chimpRerun/node_modules/meteor-promise/fiber_pool.js:43:40"
+            },
+            "line": 12,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:11"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 50745
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/node_modules/chimp/dist/lib/cucumberjs/hooks.js:68"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      },
+      {
+        "id": "test-to-skip-in-second-run;rerun-also-this-one-even-though-it-passes",
+        "keyword": "Scenario",
+        "line": 15,
+        "name": "Rerun also this one even though it passes",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "I do something \"3 1\"",
+            "result": {
+              "status": "passed",
+              "duration": 81142
+            },
+            "line": 16,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:2"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I pass \"hello world 1\"",
+            "result": {
+              "status": "passed",
+              "duration": 40262
+            },
+            "line": 17,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/features/step_definitions.js:7"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 41673
+            },
+            "hidden": true,
+            "match": {
+              "location": "/Users/user/projects/prototypes/chimpRerun/node_modules/chimp/dist/lib/cucumberjs/hooks.js:68"
+            }
+          }
+        ],
+        "tags": [],
+        "type": "scenario"
+      }
+    ],
+    "id": "test-to-skip-in-second-run",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "Test to skip in second run",
+    "tags": [],
+    "uri": "/Users/user/projects/prototypes/chimpRerun/features/test.feature"
+  }
+]
