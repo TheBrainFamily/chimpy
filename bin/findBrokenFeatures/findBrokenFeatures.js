@@ -1,4 +1,4 @@
-const { uniq } = require('lodash')
+const { uniq } = require('underscore')
 const findBrokenFeatures = (testResults) => {
   const foundBroken = [];
   testResults.forEach(feature => {
