@@ -20,10 +20,10 @@ For more details about this decision, [please see the full announcement here.](T
 | Documentation | |
 |:--- | :--- |
 | **[Installation](installation)** | **[Configuration](configuration)** | 
-| **[Chimp + Cucumber](getting-started-cucumber)** | **[Reporting](reporting)** | 
-| **[Chimp + Mocha](getting-started-mocha)** | **[Debugging](debugging)** |
-| **[Chimp + Jasmine](getting-started-jasmine)** | **[Jasmine Support](jasmine-support)** |
-| **[Chimp + Meteor](chimp-meteor)** | **[Multi Browser Testing](multi-browser-testing)** |
+| **[Chimpy + Cucumber](getting-started-cucumber)** | **[Reporting](reporting)** | 
+| **[Chimpy + Mocha](getting-started-mocha)** | **[Debugging](debugging)** |
+| **[Chimpy + Jasmine](getting-started-jasmine)** | **[Jasmine Support](jasmine-support)** |
+| **[Chimpy + Meteor](chimp-meteor)** | **[Multi Browser Testing](multi-browser-testing)** |
 | **[Synchronous Tests](synchronous-tests)** | **[Migrate To Synchronous](migrate-to-synchronous)** |    
  **[Cloud Services](cloud-services)** | **[Cheatsheet](cheat-sheet)** | 
 | **[Further Reading](further-reading)** | **[Credits](credits)** | 
