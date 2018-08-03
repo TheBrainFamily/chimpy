@@ -95,6 +95,7 @@
     "glob": "lucetius/node-glob#chimp",
     "hapi": "8.8.0",
     "jasmine": "^2.4.1",
+    "jsonfile": "^4.0.0",
     "loglevel": "~1.4.0",
     "minimist": "~1.2.0",
     "mocha": "^4.1.0",
