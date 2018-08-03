@@ -1,3 +1,6 @@
+# 0.53.0
+* Added the retry feature (Łukasz Gandecki)
+
 # 0.52.0
 
 * add chimpy binary (Łukasz Gandecki) 

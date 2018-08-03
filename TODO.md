@@ -6,8 +6,8 @@ Lukasz
 * [x] keep chimp bin but make it tell people to use chimpy instead
 * [x] Create CircleCI jobs
 * [ ] Create a page on TheBrain that tells people they can request help for $$ - the Chimpy experts
-* [ ] migrate internal project to chimpy for testing
-* [ ] Add the retry feature
+* [x] migrate internal project to chimpy for testing
+* [x] Add the retry feature
 
 Sam
 * [ ] configure docs using GHPages
