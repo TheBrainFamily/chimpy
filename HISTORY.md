@@ -1,3 +1,6 @@
+# 0.54.0 
+* Somehow the retry didn't show up in npm package, moved things around a bit. (Łukasz Gandecki)
+* Removed the extra wait when running chimpy directly (Łukasz Gandecki)
 # 0.53.0
 * Added the retry feature (Łukasz Gandecki)
 
