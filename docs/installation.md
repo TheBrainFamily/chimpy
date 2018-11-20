@@ -26,7 +26,7 @@ TODO: This needs a patch since Chimpy has been forked from Chimp.
 
 In the terminal run the following command
 ```
-npm install gulp-chimpy --save-dev
+npm install gulp-chimp --save-dev
 ```
 
 ## Usage with chimp.conf.js file  [chimp.conf.js](https://github.com/eduardogch/gulp-chimp/blob/master/chimp.conf.js)
