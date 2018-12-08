@@ -1,5 +1,5 @@
-require('babel-register')({
-  'presets': ['es2015', 'stage-2']
+require('@babel/register')({
+  'presets': ['@babel/env']
 });
 
-require('babel-polyfill');
+require('@babel/polyfill');
