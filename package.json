@@ -29,6 +29,7 @@
   },
   "scripts": {
     "watch": "npm-watch",
+    "install": "node ./scripts/prepublish.js",
     "prepublish": "node ./scripts/prepublish.js",
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
