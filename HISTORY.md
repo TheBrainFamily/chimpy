@@ -3,6 +3,9 @@
 * Fixed a bug around Chimp exiting incorrectly on hook failure
 * Upgraded Chromedriver to 74
 
+# 0.54.1
+* Upgraded Chromedriver to 73
+
 # 0.54.0 
 * Somehow the retry didn't show up in npm package, moved things around a bit. (Łukasz Gandecki)
 * Removed the extra wait when running chimpy directly (Łukasz Gandecki)
