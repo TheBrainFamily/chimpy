@@ -1,6 +1,6 @@
 {
   "name": "cherry-chimpy",
-  "version": "0.54.1",
+  "version": "0.55.0",
   "description": "Develop acceptance tests & end-to-end tests with realtime feedback.",
   "keywords": [
     "simian",
@@ -82,7 +82,7 @@
     "chai-as-promised": "^6.0.0",
     "child-process-debug": "0.0.7",
     "chokidar": "~1.6.0",
-    "chromedriver": "^73.0.0",
+    "chromedriver": "^74.0.0",
     "colors": "1.1.2",
     "commander": "^2.9.0",
     "cucumber": "xolvio/cucumber-js#v1.3.0-chimp.6",
