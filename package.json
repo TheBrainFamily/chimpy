@@ -1,6 +1,6 @@
 {
   "name": "chimpy",
-  "version": "0.54.0",
+  "version": "1.0.0",
   "description": "Develop acceptance tests & end-to-end tests with realtime feedback.",
   "keywords": [
     "simian",
@@ -85,7 +85,7 @@
     "chromedriver": "^2.46.0",
     "colors": "1.1.2",
     "commander": "^2.20.0",
-    "cucumber": "^1.3.1",
+    "cucumber": "TheBrainFamily/cucumber-js#v1.3.0-chimp.7",
     "deep-extend": "^0.4.1",
     "exit": "^0.1.2",
     "fibers": "^3.1.0",
@@ -107,7 +107,7 @@
     "underscore": "~1.8.3",
     "xolvio-ddp": "^0.12.0",
     "xolvio-jasmine-expect": "^1.0.0",
-    "xolvio-sync-webdriverio": "^9.0.0"
+    "xolvio-sync-webdriverio": "10.0.0"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
