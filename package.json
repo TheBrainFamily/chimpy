@@ -25,15 +25,15 @@
     "url": "https://github.com/TheBrainFamily/chimpy/issues"
   },
   "watch": {
-    "prepublish": "src/{lib,bin}/**/*.js"
+    "prepare": "src/{lib,bin}/**/*.js"
   },
   "scripts": {
     "watch": "npm-watch",
-    "prepublish": "node ./scripts/prepublish.js",
+    "prepare": "npx babel src --ignore spec,__tests__/options-loader.js --out-dir ./dist -q",
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
     "start": "node ./scripts/run.js",
-    "testonly": "npm run testunit && npm run prepublish && node ./scripts/run-tests.js",
+    "testonly": "npm run testunit && npm run prepare && node ./scripts/run-tests.js",
     "testunit": "mocha --opts ./mocha.opts \"`node -e \"console.log(require('./package.json').mocha.tests.join(' '))\"`\"",
     "test": "npm run testonly",
     "publish-patch": "./scripts/release.sh patch",
@@ -71,6 +71,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/cli": "^7.1.2",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",

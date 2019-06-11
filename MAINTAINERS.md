@@ -4,13 +4,13 @@
 
 * We use Babel to compile our ES2015 code to ES5.
 * The compiled ES5 code is in the `dist/` folder.
-* You can compile the code with `npm run prepublish`.
+* You can compile the code with `npm run prepare`.
   This is done automatically before you publish a release.
 
 ## Watch
 
 You can run `npm run watch` to use [npm-watch](https://www.npmjs.com/package/npm-watch) to 
-run the npm task `prepublish` automatically on change to `src/lib` or `src/bin`.
+run the npm task `prepare` automatically on change to `src/lib` or `src/bin`.
 
 ## Running tests
 
