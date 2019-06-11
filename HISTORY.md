@@ -1,3 +1,8 @@
+# 1.1.0
+
+* fix: do not terminate random sessions (Joscha Feth) 
+* Update link to default configuration in docs (Anthonny Giroud) 
+
 # 1.0.0
 
 * Works with node 10 now
