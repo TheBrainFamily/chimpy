@@ -2,5 +2,5 @@
 
 var exec = require('./lib/exec');
 
-exec('npm run prepublish');
-exec('node ./bin/chimp.js');
+exec('npm run prepare');
+exec('node ./bin/chimpy.js');
