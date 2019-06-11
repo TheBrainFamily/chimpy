@@ -1,3 +1,15 @@
+# 1.2.0
+
+* Adds the release notes for v1.1.0 (lgandecki) 
+* changelog formatting fixed (lgandecki) 
+* changelog for 1.0.0 (lgandecki) 
+* 1.1.0 (lgandecki) 
+* fix Issue #141 - can&#39;t run unit tests (alanning) 
+* prepublish -&gt; prepare; allows direct git repo dependency (alanning) 
+* support import syntax in config file (alanning) 
+* fix github test (alanning) 
+* prepublish -&gt; prepare; allows direct git repo dependency (alanning) 
+
 # 1.1.0
 
 * fix: do not terminate random sessions (Joscha Feth) 
