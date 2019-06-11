@@ -25,6 +25,12 @@ module.exports = {
     }
     const defaultOptions = this._requireFile(this._getDefaultConfigFilePath());
     const options = merge(defaultOptions, userOptions);
+
+    // Turn up the log level if chimp debug is set set to true.
+    if (options.debug === true || options.debug === 'true') {
+      log.setLevel('debug');
+    }
+
     log.debug('[chimp] Chimp options are', options);
     return options;
   },

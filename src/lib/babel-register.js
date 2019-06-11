@@ -1,5 +1,5 @@
 require('@babel/register')({
-  'presets': ['@babel/env']
+  presets: ['@babel/env'],
 });
 
 require('@babel/polyfill');
