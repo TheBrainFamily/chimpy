@@ -1,6 +1,12 @@
 import path from 'path';
 import {isCI} from '../lib/ci';
 
+const chromedriver = require('../../../../package').devDependencies.chromedriver;
+
+if (!chromedriver) {
+  throw new Error('Please install chromedriver as a dev dependency in your repo!')
+}
+
 module.exports = {
   // - - - - CHIMP - - - -
   watch: false,
@@ -73,7 +79,7 @@ module.exports = {
       chrome: {
         // check for more recent versions of chrome driver here:
         // http://chromedriver.storage.googleapis.com/index.html
-        version: require('../../package').dependencies.chromedriver.substring(1),
+        version: chromedriver.substring(1),
         arch: process.arch,
         baseURL: 'https://chromedriver.storage.googleapis.com'
       },

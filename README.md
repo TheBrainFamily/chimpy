@@ -3,8 +3,7 @@ Package requires chromedriver to be installed as a dependency in your project.
 To install both packages:
 
 ```
-npm i --save-dev 
-chimpy chromedriver
+npm i --save-dev chimpy chromedriver
 ```
 
 # IMPORTANT ANNOUNCEMENT - July 22nd, 2018
