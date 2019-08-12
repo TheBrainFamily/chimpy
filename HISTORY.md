@@ -1,6 +1,29 @@
-# 0.57.1 
+# 1.2.1 
 * Upgraded Chromedriver to 76  
+* Included everything in TheBrainFamily/Chimpy 1.2.0 
 * Updated the README doc
+
+# 1.2.0
+
+* Adds the release notes for v1.1.0 (lgandecki) 
+* changelog formatting fixed (lgandecki) 
+* changelog for 1.0.0 (lgandecki) 
+* 1.1.0 (lgandecki) 
+* fix Issue #141 - can&#39;t run unit tests (alanning) 
+* prepublish -&gt; prepare; allows direct git repo dependency (alanning) 
+* support import syntax in config file (alanning) 
+* fix github test (alanning) 
+* prepublish -&gt; prepare; allows direct git repo dependency (alanning) 
+
+# 1.1.0
+
+* fix: do not terminate random sessions (Joscha Feth) 
+* Update link to default configuration in docs (Anthonny Giroud) 
+
+# 1.0.0
+
+* Works with node 10 now
+>>>>>>> 56b1a8e5455a53958a72e9bf5b882976f2ab58c6
 
 # 0.57.0  
 * Upgraded Chromedriver to 75.0.0
@@ -17,10 +40,12 @@
 * Upgraded Chromedriver to 73
 
 # 0.54.0 
+
 * Somehow the retry didn't show up in npm package, moved things around a bit. (Łukasz Gandecki)
 * Removed the extra wait when running chimpy directly (Łukasz Gandecki)
 
 # 0.53.0
+
 * Added the retry feature (Łukasz Gandecki)
 
 # 0.52.0
