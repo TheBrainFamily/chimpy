@@ -1,6 +1,16 @@
-# 0.55.0
-* Published everything in TheBrainFamily/Chimpy 0.54.0
-* Fixed a bug around Chimp exiting incorrectly on hook failure
+# 0.57.1 
+* Upgraded Chromedriver to 76  
+* Updated the README doc
+
+# 0.57.0  
+* Upgraded Chromedriver to 75.0.0
+
+# 0.56.0  
+* Upgraded Chromedriver to 75.0.3770.8
+
+# 0.55.0 
+* Published everything in TheBrainFamily/Chimpy 0.54.0 
+* Fixed a bug around Chimp exiting incorrectly on hook failure 
 * Upgraded Chromedriver to 74
 
 # 0.54.1
