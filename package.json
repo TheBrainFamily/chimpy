@@ -83,7 +83,7 @@
     "chai-as-promised": "^6.0.0",
     "child-process-debug": "0.0.7",
     "chokidar": "^2.1.6",
-    "chromedriver": "^2.46.0",
+    "chromedriver": "^76.0.0",
     "colors": "1.1.2",
     "commander": "^2.20.0",
     "cucumber": "TheBrainFamily/cucumber-js#v1.3.0-chimp.7",
