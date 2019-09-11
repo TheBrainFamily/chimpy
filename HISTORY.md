@@ -1,3 +1,6 @@
+# 1.2.3
+* Switched to using our own cherry-chromedriver npm package  
+
 # 1.2.2
 * Upgraded Chromedriver to 77   
 
