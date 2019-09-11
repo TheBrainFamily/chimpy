@@ -73,7 +73,7 @@ module.exports = {
       chrome: {
         // check for more recent versions of chrome driver here:
         // http://chromedriver.storage.googleapis.com/index.html
-        version: require('../../package').dependencies.chromedriver.substring(1),
+        version: require('../../package').dependencies["cherry-chromedriver"].substring(1),
         arch: process.arch,
         baseURL: 'https://chromedriver.storage.googleapis.com'
       },

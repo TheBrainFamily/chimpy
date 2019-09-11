@@ -1,6 +1,6 @@
 {
   "name": "cherry-chimpy",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Develop acceptance tests & end-to-end tests with realtime feedback.",
   "keywords": [
     "simian",
