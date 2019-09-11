@@ -1,3 +1,6 @@
+# 1.2.2
+* Upgraded Chromedriver to 77   
+
 # 1.2.1 
 * Upgraded Chromedriver to 76  
 * Included everything in TheBrainFamily/Chimpy 1.2.0 
