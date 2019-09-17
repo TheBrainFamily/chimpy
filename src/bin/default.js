@@ -1,7 +1,11 @@
 import path from 'path';
 import {isCI} from '../lib/ci';
 
-const chromedriver = require('../../../../package').devDependencies.chromedriver;
+const finder = require('find-package-json');
+
+const chromedriver = finder('chromedriver');
+
+console.log('CYWIL: chromedriver', chromedriver);
 
 if (!chromedriver) {
   throw new Error('Please install chromedriver as a dev dependency in your repo!')

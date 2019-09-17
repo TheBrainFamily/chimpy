@@ -70,8 +70,8 @@
     ]
   },
   "dependencies": {
-    "@babel/core": "^7.4.5",
     "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
@@ -89,6 +89,7 @@
     "deep-extend": "^0.4.1",
     "exit": "^0.1.2",
     "fibers": "^3.1.0",
+    "find-package-json": "^1.2.0",
     "freeport": "~1.0.5",
     "fs-extra": "^1.0.0",
     "glob": "github:lucetius/node-glob#chimp",
@@ -123,7 +124,11 @@
     "npm-watch": "^0.1.6",
     "quibble": "^0.4.0",
     "shelljs": "^0.7.5",
-    "testdouble": "^1.10.1"
+    "testdouble": "^1.10.1",
+    "chromedriver": "^76.0.0"
+  },
+  "peerDependencies": {
+    "chromedriver": "*"
   },
   "directories": {
     "doc": "docs",
