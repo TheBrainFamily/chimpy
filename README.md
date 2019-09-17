@@ -1,3 +1,11 @@
+Package requires chromedriver to be installed as a dependency in your project.
+
+To install both packages:
+
+```
+npm i --save-dev chimpy chromedriver
+```
+
 # IMPORTANT ANNOUNCEMENT - July 22nd, 2018
 
 The Chimp that you know and love is now being split into two separate projects, both of which are intended to help you deliver higher quality faster.
