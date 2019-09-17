@@ -3,10 +3,8 @@ import {isCI} from '../lib/ci';
 
 const chromedriver = require('chromedriver');
 
-console.log('chromedriver', chromedriver);
-
 if (!chromedriver) {
-  throw new Error('Please install chromedriver as a dev dependency in your repo!')
+  throw new Error('Please install chromedriver as a dev dependency in your project: npm install --save-dev chromedriver')
 }
 
 module.exports = {
