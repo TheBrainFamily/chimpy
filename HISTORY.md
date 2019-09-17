@@ -1,3 +1,14 @@
+# 2.0.0
+
+* Removed console log, added msg how to install chromedriver (rcywinski) 
+* Removed unused require (rcywinski) 
+* Working with chromedriver peer dependencies (rcywinski) 
+* Review rework (rcywinski) 
+* add missing files (Igor) 
+* use parent repo chromedriver (Igor) 
+* remove chromedriver as a dependency (Igor) 
+* Adds the release notes for v1.2.0 (lgandecki) 
+
 # 1.2.0
 
 * Adds the release notes for v1.1.0 (lgandecki) 
