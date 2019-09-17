@@ -1,8 +1,6 @@
 import path from 'path';
 import {isCI} from '../lib/ci';
 
-const finder = require('find-package-json');
-
 const chromedriver = require('chromedriver');
 
 console.log('chromedriver', chromedriver);
