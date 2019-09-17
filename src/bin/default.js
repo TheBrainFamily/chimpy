@@ -3,9 +3,9 @@ import {isCI} from '../lib/ci';
 
 const finder = require('find-package-json');
 
-const chromedriver = finder('chromedriver');
+const chromedriver = require('chromedriver');
 
-console.log('CYWIL: chromedriver', chromedriver);
+console.log('chromedriver', chromedriver);
 
 if (!chromedriver) {
   throw new Error('Please install chromedriver as a dev dependency in your repo!')
@@ -83,7 +83,7 @@ module.exports = {
       chrome: {
         // check for more recent versions of chrome driver here:
         // http://chromedriver.storage.googleapis.com/index.html
-        version: chromedriver.substring(1),
+        version: chromedriver.version,
         arch: process.arch,
         baseURL: 'https://chromedriver.storage.googleapis.com'
       },

@@ -89,7 +89,6 @@
     "deep-extend": "^0.4.1",
     "exit": "^0.1.2",
     "fibers": "^3.1.0",
-    "find-package-json": "^1.2.0",
     "freeport": "~1.0.5",
     "fs-extra": "^1.0.0",
     "glob": "github:lucetius/node-glob#chimp",
