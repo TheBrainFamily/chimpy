@@ -5,7 +5,7 @@ The following is a list of examples of how to do common tasks and assertions usi
 * Synchronous execution
 * Jasmine expectations
 
-*[Click here the full WebdriverIO API](http://webdriver.io/api.html)*
+*[Click here the full WebdriverIO API](http://v4.webdriver.io/api.html)*
 
 The variable `browser` is a handle to webdriver. It is shorthand for, or the equivalent of:
 
