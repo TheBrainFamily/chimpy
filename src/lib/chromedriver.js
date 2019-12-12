@@ -1,4 +1,4 @@
-var chromedriver = require('cherry-chromedriver'),
+var chromedriver = require('chromedriver'),
     processHelper = require('./process-helper.js'),
     fs = require('fs'),
     log = require('./log');

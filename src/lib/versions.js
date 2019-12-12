@@ -6,7 +6,7 @@ const _ = require('underscore'),
     request = require('request'),
     spawnSync = require('child_process').spawnSync,
     selenium = require('selenium-standalone'),
-    chromedriver = require('cherry-chromedriver'),
+    chromedriver = require('chromedriver'),
     booleanHelper = require('./boolean-helper'),
     processHelper = require('./process-helper.js');
 
