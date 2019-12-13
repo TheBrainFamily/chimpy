@@ -1,3 +1,7 @@
+#1.2.7
+* Pushing a new version as 1.2.6 did not work on CircleCI. 
+Just making sure no mistakes were done during the previous release.
+
 #1.2.6
 * Switched to using the official chromedriver repository
 
