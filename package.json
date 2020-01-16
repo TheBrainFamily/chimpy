@@ -70,7 +70,7 @@
     ]
   },
   "dependencies": {
-    "@babel/cli": "^7.1.2",
+    "@babel/cli": "^7.8.3",
     "@babel/core": "^7.4.5",
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/polyfill": "^7.4.4",
@@ -82,14 +82,15 @@
     "chai": "~4.1.2",
     "chai-as-promised": "^6.0.0",
     "child-process-debug": "0.0.7",
-    "chokidar": "^2.1.6",
+    "chokidar": "^3.3.1",
     "colors": "1.1.2",
     "commander": "^2.20.0",
-    "cucumber": "TheBrainFamily/cucumber-js#v1.3.0-chimp.7",
+    "cucumber": "TheBrainFamily/cucumber-js#bump-fibers-version",
     "deep-extend": "^0.4.1",
     "exit": "^0.1.2",
-    "fibers": "^3.1.0",
+    "fibers": "^4.0.3",
     "freeport": "~1.0.5",
+    "fsevents": "2.1.2",
     "fs-extra": "^1.0.0",
     "glob": "github:lucetius/node-glob#chimp",
     "hapi": "8.8.0",
@@ -107,7 +108,7 @@
     "underscore": "~1.8.3",
     "xolvio-ddp": "^0.12.0",
     "xolvio-jasmine-expect": "^1.0.0",
-    "xolvio-sync-webdriverio": "10.0.0"
+    "xolvio-sync-webdriverio": "git+ssh://github.com:TheBrainFamily/sync-webdriverio#bump-fibers-version"
   },
   "devDependencies": {
     "@babel/cli": "7.1.2",
