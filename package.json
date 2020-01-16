@@ -29,7 +29,7 @@
   },
   "scripts": {
     "watch": "npm-watch",
-    "prepare": "npx babel src --ignore spec,__tests__/options-loader.js --out-dir ./dist -q",
+    "prepare": "npx babel src --ignore spec,__tests__/options-loader.js --out-dir ./dist",
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
     "start": "node ./scripts/run.js",
@@ -71,12 +71,12 @@
   },
   "dependencies": {
     "@babel/cli": "^7.8.3",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-transform-runtime": "^7.4.4",
-    "@babel/polyfill": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/register": "^7.4.4",
-    "@babel/runtime": "^7.4.5",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/polyfill": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/register": "^7.8.3",
+    "@babel/runtime": "^7.8.3",
     "async": "~0.9.0",
     "bluebird": "^3.5.4",
     "chai": "~4.1.2",
@@ -111,7 +111,7 @@
     "xolvio-sync-webdriverio": "git+ssh://github.com:TheBrainFamily/sync-webdriverio#bump-fibers-version"
   },
   "devDependencies": {
-    "@babel/cli": "7.1.2",
+    "@babel/cli": "^7.8.3",
     "babel-jest": "^23.6.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
