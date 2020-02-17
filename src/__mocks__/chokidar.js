@@ -2,10 +2,10 @@
 
 var chokidar = {
   watcher: {
-    on: jest.genMockFunction(),
-    once: jest.genMockFunction()
+    on: jest.fn(),
+    once: jest.fn()
   },
-  watch: jest.genMockFunction()
+  watch: jest.fn()
 };
 chokidar.watch.mockReturnValue(chokidar.watcher);
 

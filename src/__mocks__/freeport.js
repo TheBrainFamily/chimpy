@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = jest.jest.fn();
+module.exports = jest.fn();

@@ -19,7 +19,7 @@ class Cucumber {
     this.cucumberChild = null;
   }
 
-  start(callback) {
+  start = (callback) => {
     const args = this._getExecOptions(this.options);
 
     if (!fs.existsSync(this.options.path)) {
@@ -102,7 +102,7 @@ class Cucumber {
     });
   }
 
-  interrupt(callback) {
+  interrupt = (callback) => {
     log.debug('[chimp][cucumber] interrupting cucumber');
 
     if (!this.cucumberChild) {
@@ -124,7 +124,7 @@ class Cucumber {
     });
   }
 
-  _getRecommendedFilename(line) {
+  _getRecommendedFilename = (line) => {
     const stepType = line.match(/this\.(Given|When|Then)/)[1];
     let recommendedFilename = stepType + ' ' + line.match(/\^(.*)\$/)[1];
     recommendedFilename = recommendedFilename.replace(/".*"/g, '#');
@@ -135,7 +135,7 @@ class Cucumber {
     return recommendedFilename;
   }
 
-  _conditionOutput(message) {
+  _conditionOutput = (message) => {
     if (message.indexOf('callback.pending()') === -1) {
       process.stdout.write(message);
       return;
@@ -169,7 +169,7 @@ class Cucumber {
     }
   }
 
-  _conditionMessage(message) {
+  _conditionMessage = (message) => {
     if (this.options.debug) {
       log.debug(message);
       return;
@@ -215,7 +215,7 @@ class Cucumber {
     }
   }
 
-  _getExecOptions(options) {
+  _getExecOptions = (options) => {
     const execOptions = ['node', path.resolve(__dirname,
       path.join('..', '..', '..', 'node_modules', '.bin', 'cucumber.js')
     )];

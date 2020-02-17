@@ -1,160 +1,152 @@
-jest.dontMock('../lib/process-helper');
+// jest.dontMock('../lib/process-helper');
 
 
-describe('process-helper', function () {
+describe('process-helper', () => {
+  describe('start', () => {
+    it('spawns a child, calls the callback and returns the child', () => {
+      const processHelper = require('../lib/process-helper.js');
 
-  describe('start', function () {
+      const child = {};
+      const mockedSpawn = jest.spyOn(processHelper, "spawn");
+      mockedSpawn.mockReturnValue(child);
 
-    it('spawns a child, calls the callback and returns the child', function () {
-
-      var processHelper = require('../lib/process-helper.js');
-
-      var child = {};
-      processHelper.spawn = jest.genMockFn().mockReturnValue(child);
-
-      var options = {};
-      var callback = jest.jest.fn();
-      var ret = processHelper.start(options, callback);
+      const options = {};
+      const callback = jest.fn();
+      const ret = processHelper.start(options, callback);
 
       expect(ret).toBe(child);
       expect(callback.mock.calls.length).toBe(1);
       expect(callback.mock.calls[0][0]).toBeFalsy();
-
+      mockedSpawn.mockRestore();
     });
 
-    it('waits for message if waitForMessage is provided and delegates the callback as is', function () {
+    it('waits for message if waitForMessage is provided and delegates the callback as is', () => {
+      const processHelper = require('../lib/process-helper.js');
+      const cp = require('child_process');
 
-      var processHelper = require('../lib/process-helper.js');
+      const child = {};
+      cp.spawn = jest.fn().mockReturnValue(child)
+      const mockedSpawn = jest.spyOn(processHelper, "spawn");
+      mockedSpawn.mockImplementation(() => {});
 
-      var child = {};
-      processHelper.spawn = jest.jest.fn();
-
-      processHelper.waitForMessage = jest.genMockFn().mockImplementation(function (options, child, callback) {
+      const mockedWaitForMessage = jest.spyOn(processHelper, "waitForMessage");
+      mockedWaitForMessage.mockImplementation(function (options, child, callback) {
         callback.apply(this, [1, 2, 3, 4]);
       });
 
-      var options = {waitForMessage: 'not null'};
-      var callback = jest.jest.fn();
-      var ret = processHelper.start(options, callback);
+      const options = {waitForMessage: 'not null'};
+      const callback = jest.fn();
+      const ret = processHelper.start(options, callback);
 
       expect(processHelper.waitForMessage.mock.calls.length).toBe(1);
       expect(callback.mock.calls.length).toBe(1);
       expect(callback.mock.calls[0]).toEqual([1, 2, 3, 4]);
-
+      mockedSpawn.mockRestore();
+      mockedWaitForMessage.mockRestore();
     });
-
   });
 
-  describe('spawn', function () {
+  describe('spawn', () => {
+    it('calls spawn with the binary and args and returns the child process', () => {
+      const cp = require('child_process');
+      const processHelper = require('../lib/process-helper.js');
 
-    it('calls spawn with the binary and args and returns the child process', function () {
+      processHelper.logOutputs = jest.fn();
 
-      var cp = require('child_process'),
-        processHelper = require('../lib/process-helper.js');
+      const child = {};
+      cp.spawn = jest.fn().mockReturnValue(child)
 
-      processHelper.logOutputs = jest.jest.fn();
-
-      var child = {};
-      spyOn(cp, 'spawn').and.returnValue(child);
-
-      var options = {
+      const options = {
         bin: '/someBinary',
-        args: ['bunch', 'of', 'args']
+        args: ['bunch', 'of', 'args'],
       };
-      var ret = processHelper.spawn(options);
+      const ret = processHelper.spawn(options);
 
-      expect(cp.spawn).toHaveBeenCalledWith(options.bin, options.args);
+      expect(cp.spawn.mock.calls.length).toBe(1);
+      expect(cp.spawn.mock.calls[0][0]).toBe(options.bin);
+      expect(cp.spawn.mock.calls[0][1]).toBe(options.args);
       expect(ret).toBe(child);
-
     });
 
-    it('logs the outputs of the child process', function () {
-
-      var cp = require('child_process'),
+    it('logs the outputs of the child process', () => {
+      let cp = require('child_process'),
         processHelper = require('../lib/process-helper.js');
 
-      processHelper.logOutputs = jest.jest.fn();
+      processHelper.logOutputs = jest.fn();
 
-      var child = {};
+      const child = {};
       spyOn(cp, 'spawn').and.returnValue(child);
 
-      var options = {
-        prefix: 'hey bear'
+      const options = {
+        prefix: 'hey bear',
       };
-      var ret = processHelper.spawn(options);
+      const ret = processHelper.spawn(options);
 
       expect(processHelper.logOutputs.mock.calls.length).toBe(1);
       expect(processHelper.logOutputs.mock.calls[0][0]).toBe(options.prefix);
       expect(processHelper.logOutputs.mock.calls[0][1]).toBe(child);
-
     });
-
   });
 
-  describe('logOutputs', function () {
-
-    it('logs the output of the child process stderr events', function () {
-
-      var log = require('../lib/log.js'),
+  describe('logOutputs', () => {
+    it('logs the output of the child process stderr events', () => {
+      let log = require('../lib/log.js'),
         processHelper = require('../lib/process-helper.js');
 
-      var child = {
+      log.debug = jest.fn();
+      const child = {
         stdout: {
-          on: jest.genMockFn().mockImplementation(function (event, eventTrigger) {
+          on: jest.fn().mockImplementation((event, eventTrigger) => {
             eventTrigger('blah');
             expect(event).toBe('data');
             expect(log.debug.mock.calls.length).toBe(1);
             expect(log.debug.mock.calls[0][0]).toBe('[chimp][prefix.stdout]');
             expect(log.debug.mock.calls[0][1]).toBe('blah');
-          })
+          }),
         },
         stderr: {
-          on: jest.genMockFn().mockImplementation(function (event, eventTrigger) {
+          on: jest.fn().mockImplementation((event, eventTrigger) => {
             eventTrigger('blah blah');
             expect(event).toBe('data');
             expect(log.debug.mock.calls.length).toBe(2);
             expect(log.debug.mock.calls[1][0]).toBe('[chimp][prefix.stderr]');
             expect(log.debug.mock.calls[1][1]).toBe('blah blah');
-          })
-        }
+          }),
+        },
       };
 
       processHelper.logOutputs('prefix', child);
-
     });
-
   });
 
-  describe('waitForMessage', function () {
+  describe('waitForMessage', () => {
+    it('removes the listener if the success message is seen and calls the callback', () => {
+      const processHelper = require('../lib/process-helper.js');
 
-    it('removes the listener if the success message is seen and calls the callback', function () {
+      const callback = jest.fn();
 
-      var processHelper = require('../lib/process-helper.js');
-
-      var callback = jest.jest.fn();
-
-      var options = {
+      const options = {
         prefix: '[apollo]',
-        waitForMessage: 'we have lift off'
+        waitForMessage: 'we have lift off',
       };
 
-      var eventToBeRemovedStdOut = false;
-      var eventToBeRemovedStdErr = false;
-      var child = {
+      let eventToBeRemovedStdOut = false;
+      let eventToBeRemovedStdErr = false;
+      const child = {
         stdout: {
-          on: jest.genMockFn().mockImplementation(function (event, eventTrigger) {
+          on: jest.fn().mockImplementation((event, eventTrigger) => {
             eventToBeRemovedStdOut = eventTrigger;
             eventTrigger('Huston, we have lift off!');
           }),
-          removeListener: jest.genMockFn()
+          removeListener: jest.fn(),
         },
         stderr: {
-          on: jest.genMockFn().mockImplementation(function (event, eventTrigger) {
+          on: jest.fn().mockImplementation((event, eventTrigger) => {
             eventToBeRemovedStdErr = eventTrigger;
             eventTrigger('Huston, we have lift off!');
           }),
-          removeListener: jest.genMockFn()
-        }
+          removeListener: jest.fn(),
+        },
       };
 
       processHelper.waitForMessage(options, child, callback);
@@ -170,33 +162,31 @@ describe('process-helper', function () {
       expect(callback.mock.calls.length).toBe(2);
       expect(callback.mock.calls[0][0]).toBeFalsy();
       expect(callback.mock.calls[1][0]).toBeFalsy();
-
     });
 
-    it('calls back with an error if the error message is seen', function () {
+    it('calls back with an error if the error message is seen', () => {
+      const processHelper = require('../lib/process-helper.js');
 
-      var processHelper = require('../lib/process-helper.js');
+      const callback = jest.fn();
 
-      var callback = jest.jest.fn();
-
-      var options = {
+      const options = {
         prefix: '[apollo]',
         waitForMessage: 'not empty',
-        errorMessage: 'engine failure'
+        errorMessage: 'engine failure',
       };
 
-      var eventToBeRemoved = false;
-      var child = {
+      const eventToBeRemoved = false;
+      const child = {
         stdout: {
-          on: jest.genMockFn().mockImplementation(function (event, eventTrigger) {
+          on: jest.fn().mockImplementation((event, eventTrigger) => {
             eventTrigger('Huston, we have a problem - engine failure!');
-          })
+          }),
         },
         stderr: {
-          on: jest.genMockFn().mockImplementation(function (event, eventTrigger) {
+          on: jest.fn().mockImplementation((event, eventTrigger) => {
             eventTrigger('Huston, we have a problem - engine failure!');
-          })
-        }
+          }),
+        },
       };
 
       processHelper.waitForMessage(options, child, callback);
@@ -204,18 +194,14 @@ describe('process-helper', function () {
       expect(callback.mock.calls.length).toBe(2);
       expect(callback.mock.calls[0][0]).toBe('Huston, we have a problem - engine failure!');
       expect(callback.mock.calls[1][0]).toBe('Huston, we have a problem - engine failure!');
-
     });
-
   });
 
-  describe('kill', function () {
+  describe('kill', () => {
+    it('kills the provided process, sets it to null and calls the callback when the process is dead', () => {
+      const processHelper = require('../lib/process-helper.js');
 
-    it('kills the provided process, sets it to null and calls the callback when the process is dead', function () {
-
-      var processHelper = require('../lib/process-helper.js');
-
-      process.kill = jest.genMockFn().mockImplementation(function () {
+      process.kill = jest.fn().mockImplementation(() => {
         // the first call checks if the process exists
         // the second call is the actual kill
         // subsequent calls are checking if the process exists
@@ -225,12 +211,13 @@ describe('process-helper', function () {
         }
       });
 
-      var options = {
+      const options = {
         child: {
-          pid: 1234
-        }
+          pid: 1234,
+        },
       };
-      var callback = jest.jest.fn();
+      const callback = jest.fn();
+      jest.useFakeTimers();
       processHelper.kill(options, callback);
       jest.runAllTimers();
 
@@ -247,9 +234,6 @@ describe('process-helper', function () {
 
       expect(callback.mock.calls.length).toBe(1);
       expect(callback.mock.calls[0][0]).toBeFalsy();
-
     });
-
   });
-
 });

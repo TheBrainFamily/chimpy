@@ -21,14 +21,14 @@ var DEFAULT_COLOR = 'yellow';
 /**
  * Internals
  */
-exports.Mocha = require('./mocha/mocha.js');
-exports.Jasmine = require('./jasmine/jasmine.js');
-exports.Cucumber = require('./cucumberjs/cucumber.js');
-exports.Phantom = require('./phantom.js');
-exports.Chromedriver = require('./chromedriver.js');
-exports.Consoler = require('./consoler.js');
-exports.Selenium = require('./selenium.js');
-exports.SimianReporter = require('./simian-reporter.js');
+const Mocha = require('./mocha/mocha.js');
+const Jasmine = require('./jasmine/jasmine.js');
+const Cucumber = require('./cucumberjs/cucumber.js');
+const Phantom = require('./phantom.js');
+const Chromedriver = require('./chromedriver.js');
+const Consoler = require('./consoler.js');
+const Selenium = require('./selenium.js');
+const SimianReporter = require('./simian-reporter.js');
 
 /**
  * Exposes the binary path
@@ -39,7 +39,7 @@ Chimp.bin = path.resolve(__dirname, path.join('..', 'bin', 'chimp'));
 
 Chimp.install = function (callback) {
   log.debug('[chimp]', 'Installing dependencies');
-  new exports.Selenium({port: '1'}).install(callback);
+  new Selenium({port: '1'}).install(callback);
 };
 
 /**
@@ -474,7 +474,7 @@ Chimp.prototype.run = function (callback) {
         self.options.simianResultBranch !== false
       ) {
         const jsonCucumberResult = getJsonCucumberResults(result);
-        const simianReporter = new exports.SimianReporter(self.options);
+        const simianReporter = new SimianReporter(self.options);
         simianReporter.report(jsonCucumberResult, () => {
           callback(error, result);
         });
@@ -615,13 +615,13 @@ Chimp.prototype._createProcesses = function () {
   if (!this.options.domainOnly) {
     if (this.options.browser === 'phantomjs') {
       process.env['chimp.host'] = this.options.host = 'localhost';
-      var phantom = new exports.Phantom(this.options);
+      var phantom = new Phantom(this.options);
       processes.push(phantom);
     }
 
     else if (userHasProvidedBrowser() && userHasNotProvidedSeleniumHost()) {
       process.env['chimp.host'] = this.options.host = 'localhost';
-      var selenium = new exports.Selenium(this.options);
+      var selenium = new Selenium(this.options);
       processes.push(selenium);
     }
 
@@ -629,16 +629,16 @@ Chimp.prototype._createProcesses = function () {
       // rewrite the browser to be chrome since "chromedriver" is not a valid browser
       process.env['chimp.browser'] = this.options.browser = 'chrome';
       process.env['chimp.host'] = this.options.host = 'localhost';
-      var chromedriver = new exports.Chromedriver(this.options);
+      var chromedriver = new Chromedriver(this.options);
       processes.push(chromedriver);
     }
   }
 
   if (booleanHelper.isTruthy(this.options.mocha)) {
-    var mocha = new exports.Mocha(this.options);
+    var mocha = new Mocha(this.options);
     processes.push(mocha);
   } else if (booleanHelper.isTruthy(this.options.jasmine)) {
-    const jasmine = new exports.Jasmine(this.options);
+    const jasmine = new Jasmine(this.options);
     processes.push(jasmine);
   } else {
     if (booleanHelper.isTruthy(this.options.e2eSteps) || booleanHelper.isTruthy(this.options.domainSteps)) {
@@ -658,11 +658,11 @@ Chimp.prototype._createProcesses = function () {
         }
 
         if (!this.options.domainOnly) {
-          processes.push(new exports.Consoler(message[DEFAULT_COLOR]));
+          processes.push(new Consoler(message[DEFAULT_COLOR]));
         }
-        processes.push(new exports.Cucumber(options));
+        processes.push(new Cucumber(options));
         addTestRunnerToRunOrder('cucumber', 'domain');
-        processes.push(new exports.Consoler(''));
+        processes.push(new Consoler(''));
       }
       if (booleanHelper.isTruthy(this.options.e2eSteps)) {
         // e2e scenarios
@@ -679,16 +679,16 @@ Chimp.prototype._createProcesses = function () {
 
         const message = `\n[chimp] ${options.e2eTags} scenarios ...`;
         options.r.push(options.e2eSteps);
-        processes.push(new exports.Consoler(message[DEFAULT_COLOR]));
-        processes.push(new exports.Cucumber(options));
+        processes.push(new Consoler(message[DEFAULT_COLOR]));
+        processes.push(new Cucumber(options));
         addTestRunnerToRunOrder('cucumber', 'e2e');
-        processes.push(new exports.Consoler(''));
+        processes.push(new Consoler(''));
       }
     }
 
 
     else {
-      const cucumber = new exports.Cucumber(this.options);
+      const cucumber = new Cucumber(this.options);
       processes.push(cucumber);
       addTestRunnerToRunOrder('cucumber', 'generic');
     }

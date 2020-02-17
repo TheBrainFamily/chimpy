@@ -15,6 +15,7 @@ function SimianReporter(options) {
 }
 
 SimianReporter.prototype.report = function report(jsonCucumberResult, callback) {
+  SimianReporter.reportCallback = callback;
   const query = {
     accessToken: this.options.simianAccessToken,
   };
@@ -52,7 +53,7 @@ SimianReporter.prototype.report = function report(jsonCucumberResult, callback) 
           log.error('[chimp][simian-reporter]', 'Error while sending result to Simian:', error);
         }
       }
-      callback(error);
+      SimianReporter.reportCallback(error);
     }
   );
 };

@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  wrapAsyncObject: jest.genMockFunction()
+  wrapAsyncObject: jest.fn()
 };
