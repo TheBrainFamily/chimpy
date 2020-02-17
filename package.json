@@ -85,6 +85,7 @@
     "chai-as-promised": "^6.0.0",
     "child-process-debug": "0.0.7",
     "chokidar": "^3.3.1",
+    "chromedriver": "^76.0.0",
     "colors": "1.1.2",
     "commander": "^2.20.0",
     "cucumber": "git+ssh://github.com:TheBrainFamily/cucumber-js#bump-fibers-version",
@@ -115,8 +116,9 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.8.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-export-default-from": "^7.8.3",
     "babel-jest": "^25.1.0",
-    "chromedriver": "^76.0.0",
     "eslint": "^3.12.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-babel": "^4.0.0",
