@@ -5,16 +5,14 @@ jest.dontMock('async');
 jest.dontMock('wrappy');
 jest.dontMock('../lib/cucumberjs/cucumber.js');
 
+beforeEach(() => {
+  jest.resetModules();
+});
 describe('Chimp', () => {
   jest.genMockFromModule('chromedriver');
   jest.genMockFromModule('fs-extra');
 
   const Chimp = require('../lib/chimp');
-
-  describe('constructor', () => {
-    // moved to src/lib/chimp-specs.js
-  });
-
   describe('bin path', () => {
     it('sets the bin path to the location of chimp', () => {
       expect(Chimp.bin.match(/bin\/chimp$/)).not.toBe(null);
@@ -88,62 +86,77 @@ describe('Chimp', () => {
     it('runs in single mode when no mode option is passed', () => {
       const chimp = new Chimp();
 
-      chimp.run = jest.fn();
-      chimp.start = jest.fn();
-      chimp.watch = jest.fn();
-      chimp.server = jest.fn();
+      const mockedWatch = jest.spyOn(chimp, "watch");
+      const mockedRun = jest.spyOn(chimp, "run");
+      const mockedServer = jest.spyOn(chimp, "server");
       const callback = function () {};
 
       chimp.selectMode(callback);
 
-      expect(chimp.run).toBeCalledWith(callback);
-      expect(chimp.run.mock.calls.length).toBe(1);
+      expect(mockedRun.mock.calls.length).toBe(1);
+      expect(mockedRun.mock.calls[0][0]).toBe(callback);
 
-      expect(chimp.start.mock.calls.length).toBe(0);
-      expect(chimp.watch.mock.calls.length).toBe(0);
-      expect(chimp.server.mock.calls.length).toBe(0);
+      expect(mockedWatch.mock.calls.length).toBe(0);
+      expect(mockedServer.mock.calls.length).toBe(0);
+      mockedWatch.mockRestore();
+      mockedRun.mockRestore();
+      mockedServer.mockRestore();
     });
 
     it('runs in watch mode)', () => {
       const chimp = new Chimp({watch: true});
 
-      chimp.run = jest.fn();
-      chimp.start = jest.fn();
-      chimp.watch = jest.fn();
-      chimp.server = jest.fn();
+      const mockedWatch = jest.spyOn(chimp, "watch");
+      const mockedRun = jest.spyOn(chimp, "run");
+      const mockedServer = jest.spyOn(chimp, "server");
 
       chimp.selectMode();
 
-      expect(chimp.watch).toBeCalledWith();
-      expect(chimp.watch.mock.calls.length).toBe(1);
+      expect(mockedWatch.mock.calls.length).toBe(1);
+      expect(mockedWatch.mock.calls[0].length).toBe(0);
 
-      expect(chimp.run.mock.calls.length).toBe(0);
-      expect(chimp.start.mock.calls.length).toBe(0);
-      expect(chimp.server.mock.calls.length).toBe(0);
+      expect(mockedRun.mock.calls.length).toBe(0);
+      expect(mockedServer.mock.calls.length).toBe(0);
+      mockedWatch.mockRestore();
+      mockedRun.mockRestore();
+      mockedServer.mockRestore();
     });
 
     it('runs in server mode)', () => {
       const chimp = new Chimp({server: true});
 
-      chimp.run = jest.fn();
-      chimp.start = jest.fn();
-      chimp.watch = jest.fn();
-      chimp.server = jest.fn();
+      const mockedWatch = jest.spyOn(chimp, "watch");
+      const mockedRun = jest.spyOn(chimp, "run");
+      const mockedServer = jest.spyOn(chimp, "server");
 
       chimp.selectMode();
 
-      expect(chimp.server.mock.calls.length).toBe(1);
-      expect(typeof chimp.server.mock.calls[0][0]).toBe('undefined');
+      expect(mockedServer.mock.calls.length).toBe(1);
+      expect(typeof mockedServer.mock.calls[0][0]).toBe('undefined');
 
-      expect(chimp.watch.mock.calls.length).toBe(0);
-      expect(chimp.run.mock.calls.length).toBe(0);
-      expect(chimp.start.mock.calls.length).toBe(0);
+      expect(mockedRun.mock.calls.length).toBe(0);
+      expect(mockedWatch.mock.calls.length).toBe(0);
+      mockedWatch.mockRestore();
+      mockedRun.mockRestore();
+      mockedServer.mockRestore();
     });
   });
 
   describe('watch', () => {
     it('initializes chokidar', () => {
+      jest.doMock('chokidar', () => {
+        return {
+          watch: jest.fn(),
+          watcher: {
+            on: jest.fn(),
+            once: jest.fn(),
+          },
+        };
+      });
+
       const chokidar = require('chokidar');
+      chokidar.watch.mockReturnValue(chokidar.watcher);
+
       const Chimp = require('../lib/chimp.js');
       const options = {path: 'abc'};
       const chimp = new Chimp(options);
@@ -156,7 +169,17 @@ describe('Chimp', () => {
     });
 
     it('all listener is registered after watcher is ready', () => {
+      jest.doMock('chokidar', () => {
+        return {
+          watch: jest.fn(),
+          watcher: {
+            on: jest.fn(),
+            once: jest.fn(),
+          },
+        };
+      });
       const chokidar = require('chokidar');
+      chokidar.watch.mockReturnValue(chokidar.watcher);
       const Chimp = require('../lib/chimp.js');
 
       const options = {path: 'abc'};
@@ -176,7 +199,17 @@ describe('Chimp', () => {
     });
 
     it('an non-unlink event triggers the interrupt and run sequence', function () {
+      jest.doMock('chokidar', () => {
+        return {
+          watch: jest.fn(),
+          watcher: {
+            on: jest.fn(),
+            once: jest.fn(),
+          },
+        };
+      });
       const chokidar = require('chokidar');
+      chokidar.watch.mockReturnValue(chokidar.watcher);
       const Chimp = require('../lib/chimp.js');
 
       const chimp = new Chimp();
@@ -204,7 +237,17 @@ describe('Chimp', () => {
     });
 
     it('a deleted feature does not trigger the interrupt and run sequence', () => {
+      jest.doMock('chokidar', () => {
+        return {
+          watch: jest.fn(),
+          watcher: {
+            on: jest.fn(),
+            once: jest.fn(),
+          },
+        };
+      });
       const chokidar = require('chokidar');
+      chokidar.watch.mockReturnValue(chokidar.watcher);
       const Chimp = require('../lib/chimp.js');
 
       // var _on = process.on;
@@ -231,7 +274,17 @@ describe('Chimp', () => {
     });
 
     it('a deleted non-feature triggers the interrupt and run sequence', function () {
+      jest.doMock('chokidar', () => {
+        return {
+          watch: jest.fn(),
+          watcher: {
+            on: jest.fn(),
+            once: jest.fn(),
+          },
+        };
+      });
       const chokidar = require('chokidar');
+      chokidar.watch.mockReturnValue(chokidar.watcher);
       const async = require('async');
       const Chimp = require('../lib/chimp.js');
 
@@ -260,7 +313,17 @@ describe('Chimp', () => {
     });
 
     it('runs on startup', () => {
+      jest.doMock('chokidar', () => {
+        return {
+          watch: jest.fn(),
+          watcher: {
+            on: jest.fn(),
+            once: jest.fn(),
+          },
+        };
+      });
       const chokidar = require('chokidar');
+      chokidar.watch.mockReturnValue(chokidar.watcher);
       const Chimp = require('../lib/chimp.js');
 
       const chimp = new Chimp();
@@ -276,6 +339,17 @@ describe('Chimp', () => {
     });
 
     it('uses the watchTag with cucumber', () => {
+      jest.doMock('chokidar', () => {
+        return {
+          watch: jest.fn(),
+          watcher: {
+            on: jest.fn(),
+            once: jest.fn(),
+          },
+        };
+      });
+      const chokidar = require('chokidar');
+      chokidar.watch.mockReturnValue(chokidar.watcher);
       const Chimp = require('../lib/chimp.js');
 
       const chimp = new Chimp({
@@ -654,12 +728,14 @@ describe('Chimp', () => {
 
       const chimp = new Chimp();
       const processes = [];
-      chimp._createProcesses = jest.fn().mockReturnValue(processes);
+      const mockedCreateProcesses = jest.spyOn(chimp, "_createProcesses");
+      mockedCreateProcesses.mockReturnValue(processes);
 
       chimp._startProcesses();
 
-      expect(chimp._createProcesses.mock.calls.length).toBe(1);
+      expect(mockedCreateProcesses.mock.calls.length).toBe(1);
       expect(chimp.processes).toBe(processes);
+      mockedCreateProcesses.mockRestore();
     });
 
     it('start each process in its own context and calls callback once', () => {
@@ -678,7 +754,8 @@ describe('Chimp', () => {
       };
 
       const processes = [new Process(), new Process()];
-      chimp._createProcesses = jest.fn().mockReturnValue(processes);
+      const mockedCreateProcesses = jest.spyOn(chimp, "_createProcesses");
+      mockedCreateProcesses.mockReturnValue(processes);
 
       const callback = jest.fn();
 
@@ -688,6 +765,7 @@ describe('Chimp', () => {
       expect(callback.mock.calls.length).toBe(1);
       expect(processes[0].state).toBe('started');
       expect(processes[1].state).toBe('started');
+      mockedCreateProcesses.mockRestore();
     });
 
     it('bubbles up errors in callback if an processes callback with an error', () => {
@@ -706,7 +784,8 @@ describe('Chimp', () => {
       };
 
       const processes = [new Process('1'), new Process('2')];
-      chimp._createProcesses = jest.fn().mockReturnValue(processes);
+      const mockedCreateProcesses = jest.spyOn(chimp, "_createProcesses");
+      mockedCreateProcesses.mockReturnValue(processes);
 
       const callback = jest.fn();
 
@@ -716,6 +795,7 @@ describe('Chimp', () => {
       expect(callback.mock.calls.length).toBe(1);
       expect(processes[0].state).toBe('started');
       expect(processes[1].state).toBe('constructed');
+      mockedCreateProcesses.mockRestore();
     });
 
     it('cancels the isInterrupting flag on error', () => {
@@ -725,8 +805,8 @@ describe('Chimp', () => {
       const chimp = new Chimp();
 
       chimp.isInterrupting = true;
-      chimp._createProcesses = jest.fn();
-      _.collect = jest.fn().mockReturnValue(['yo']);
+      const mockedCreateProcesses = jest.spyOn(chimp, "_createProcesses");
+      mockedCreateProcesses.mockImplementation(() => [{ start: { bind: () => 'yo' } }]);
 
       async.series = jest.fn().mockImplementation((procs, func) => {
         func('error');
@@ -735,6 +815,8 @@ describe('Chimp', () => {
       chimp._startProcesses(jest.fn());
 
       expect(chimp.isInterrupting).toBe(false);
+      mockedCreateProcesses.mockRestore();
+
     });
   });
 
