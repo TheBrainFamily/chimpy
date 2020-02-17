@@ -94,7 +94,7 @@ describe('Selenium', function () {
         seleniumStandaloneOptions: {},
       });
       var seleniumStandalone = require('selenium-standalone');
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
 
       selenium.install(callback);
       seleniumStandalone.install.mock.calls[0][1]();
@@ -107,7 +107,7 @@ describe('Selenium', function () {
       var selenium = new Selenium({port: '4444', offline: true});
       var seleniumStandalone = require('selenium-standalone');
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
 
       selenium.install(callback);
 
@@ -127,7 +127,7 @@ describe('Selenium', function () {
         seleniumStandaloneOptions: {},
       });
       var seleniumStandalone = require('selenium-standalone');
-      selenium.install = jest.genMockFunction();
+      selenium.install = jest.fn();
       selenium.install.mockImplementation(function (callback) {
         callback(null);
       });
@@ -147,7 +147,7 @@ describe('Selenium', function () {
         seleniumStandaloneOptions: {seleniumArgs: [opt]},
       });
       var seleniumStandalone = require('selenium-standalone');
-      selenium.install = jest.genMockFunction();
+      selenium.install = jest.fn();
       selenium.install.mockImplementation(function (callback) {
         callback(null);
       });
@@ -165,7 +165,7 @@ describe('Selenium', function () {
         seleniumStandaloneOptions: {},
       });
       var seleniumStandalone = require('selenium-standalone');
-      selenium.install = jest.genMockFunction();
+      selenium.install = jest.fn();
       selenium.install.mockImplementation(function (callback) {
         callback(null);
       });
@@ -192,7 +192,7 @@ describe('Selenium', function () {
         seleniumStandaloneOptions: {},
       });
       var seleniumStandalone = require('selenium-standalone');
-      selenium.install = jest.genMockFunction();
+      selenium.install = jest.fn();
       selenium.install.mockImplementation(function (callback) {
         callback(null);
       });
@@ -205,7 +205,7 @@ describe('Selenium', function () {
         callback(null, seleniumChild);
       });
 
-      var callback = jest.genMockFunction();
+      var callback = jest.fn();
       selenium.start(callback);
 
       expect(callback.mock.calls[0]).toEqual([null]);
@@ -220,7 +220,7 @@ describe('Selenium', function () {
         seleniumStandaloneOptions: {},
       });
       var seleniumStandalone = require('selenium-standalone');
-      selenium.install = jest.genMockFunction();
+      selenium.install = jest.fn();
       selenium.install.mockImplementation(function (callback) {
         callback(null);
       });
@@ -229,7 +229,7 @@ describe('Selenium', function () {
         callback(error);
       });
 
-      var callback = jest.genMockFunction();
+      var callback = jest.fn();
       selenium.start(callback);
 
       expect(callback.mock.calls[0]).toEqual([error]);
@@ -246,9 +246,9 @@ describe('Selenium', function () {
       var Selenium = require('../lib/selenium');
       var selenium = new Selenium({port: '4444'});
 
-      var callback = jest.genMockFunction();
+      var callback = jest.fn();
 
-      seleniumStandalone.start = jest.genMockFn();
+      seleniumStandalone.start = jest.jest.fn();
 
       selenium.child = 'not null';
       selenium.start(callback);
@@ -275,7 +275,7 @@ describe('Selenium', function () {
         selenium.child = seleniumChild;
         selenium.sessionManager = {};
 
-        var callback = jest.genMockFunction();
+        var callback = jest.fn();
         selenium.stop(callback);
 
         expect(processHelper.kill.mock.calls.length).toBe(1);
@@ -301,7 +301,7 @@ describe('Selenium', function () {
         var Selenium = require('../lib/selenium');
         var selenium = new Selenium({port: '4444'});
 
-        var callback = jest.genMockFunction();
+        var callback = jest.fn();
         selenium.stop(callback);
 
         expect(selenium.child).toBe(null);
@@ -320,9 +320,9 @@ describe('Selenium', function () {
       var Selenium = require('../lib/selenium');
       var selenium = new Selenium({port: '4444', watch: true});
 
-      var callback = jest.genMockFunction();
+      var callback = jest.fn();
 
-      selenium.stop = jest.genMockFn();
+      selenium.stop = jest.jest.fn();
 
       selenium.interrupt(callback);
 
@@ -336,9 +336,9 @@ describe('Selenium', function () {
       var Selenium = require('../lib/selenium');
       var selenium = new Selenium({port: '4444'});
 
-      var callback = jest.genMockFunction();
+      var callback = jest.fn();
 
-      selenium.stop = jest.genMockFn();
+      selenium.stop = jest.jest.fn();
 
       selenium.interrupt(callback);
 
@@ -352,7 +352,7 @@ describe('Selenium', function () {
       var Selenium = require('../lib/selenium');
       var selenium = new Selenium({port: '4444', 'clean-selenium-server': true});
 
-      selenium.stop = jest.genMockFn();
+      selenium.stop = jest.jest.fn();
 
       var callback = 'callback';
       selenium.interrupt(callback);

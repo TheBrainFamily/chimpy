@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = jest.genMockFn();
+module.exports = jest.jest.fn();

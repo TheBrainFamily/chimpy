@@ -9,8 +9,8 @@ describe('Options Loader', () => {
 
     beforeEach(() => {
       spyOn(process, 'cwd').and.returnValue('/myFolder');
-      optionsLoader._exit = jest.genMockFn();
-      optionsLoader._requireFile = jest.genMockFn();
+      optionsLoader._exit = jest.jest.fn();
+      optionsLoader._requireFile = jest.jest.fn();
     });
 
     it('should use the first argument as the config file if it is a js file containing "chimp"', () => {

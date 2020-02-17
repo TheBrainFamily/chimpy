@@ -29,10 +29,10 @@ describe('Chimp', function () {
       var restore = chimp.fs.existsSync;
       chimp.fs.existsSync = jest.genMockFn().mockReturnValue(false);
 
-      chimp.informUser = jest.genMockFunction();
-      chimp.exec = jest.genMockFunction();
+      chimp.informUser = jest.fn();
+      chimp.exec = jest.fn();
 
-      chimp.selectMode = jest.genMockFunction();
+      chimp.selectMode = jest.fn();
       var callback = function () {};
 
       chimp.init(callback);
@@ -51,11 +51,11 @@ describe('Chimp', function () {
       var restore = chimp.fs.existsSync;
       chimp.fs.existsSync = jest.genMockFn().mockReturnValue(true);
 
-      chimp.informUser = jest.genMockFunction();
-      chimp.exec = jest.genMockFunction();
+      chimp.informUser = jest.fn();
+      chimp.exec = jest.fn();
 
-      chimp.selectMode = jest.genMockFunction();
-      var callback = jest.genMockFunction();
+      chimp.selectMode = jest.fn();
+      var callback = jest.fn();
 
       chimp.init(callback);
 
@@ -74,13 +74,13 @@ describe('Chimp', function () {
       var restore = chimp.fs.existsSync;
       chimp.fs.existsSync = jest.genMockFn().mockReturnValue(true);
 
-      chimp.informUser = jest.genMockFunction();
+      chimp.informUser = jest.fn();
       chimp.exec = jest.genMockFunction().mockImplementation(function (cmd, callback) {
         return callback(null);
       });
 
 
-      chimp.selectMode = jest.genMockFunction();
+      chimp.selectMode = jest.fn();
       var callback = function () {};
 
       chimp.init(callback);
@@ -98,10 +98,10 @@ describe('Chimp', function () {
 
       var chimp = new Chimp();
 
-      chimp.run = jest.genMockFunction();
-      chimp.start = jest.genMockFunction();
-      chimp.watch = jest.genMockFunction();
-      chimp.server = jest.genMockFunction();
+      chimp.run = jest.fn();
+      chimp.start = jest.fn();
+      chimp.watch = jest.fn();
+      chimp.server = jest.fn();
       var callback = function () {};
 
       chimp.selectMode(callback);
@@ -119,10 +119,10 @@ describe('Chimp', function () {
 
       var chimp = new Chimp({watch: true});
 
-      chimp.run = jest.genMockFunction();
-      chimp.start = jest.genMockFunction();
-      chimp.watch = jest.genMockFunction();
-      chimp.server = jest.genMockFunction();
+      chimp.run = jest.fn();
+      chimp.start = jest.fn();
+      chimp.watch = jest.fn();
+      chimp.server = jest.fn();
 
       chimp.selectMode();
 
@@ -138,10 +138,10 @@ describe('Chimp', function () {
 
       var chimp = new Chimp({server: true});
 
-      chimp.run = jest.genMockFunction();
-      chimp.start = jest.genMockFunction();
-      chimp.watch = jest.genMockFunction();
-      chimp.server = jest.genMockFunction();
+      chimp.run = jest.fn();
+      chimp.start = jest.fn();
+      chimp.watch = jest.fn();
+      chimp.server = jest.fn();
 
       chimp.selectMode();
 
@@ -164,7 +164,7 @@ describe('Chimp', function () {
 
       var options = {path: 'abc'};
       var chimp = new Chimp(options);
-      chimp.run = jest.genMockFunction();
+      chimp.run = jest.fn();
 
       chimp.watch();
 
@@ -180,8 +180,8 @@ describe('Chimp', function () {
       var options = {path: 'abc'};
       var chimp = new Chimp(options);
 
-      chimp.run = jest.genMockFunction();
-      chokidar.watcher.on = jest.genMockFunction();
+      chimp.run = jest.fn();
+      chokidar.watcher.on = jest.fn();
 
       chimp.watch();
       expect(chokidar.watcher.once.mock.calls[0][0]).toBe('ready');
@@ -200,7 +200,7 @@ describe('Chimp', function () {
 
       var chimp = new Chimp();
 
-      chimp.run = jest.genMockFunction();
+      chimp.run = jest.fn();
 
       var self = this;
       self.func = null;
@@ -215,7 +215,7 @@ describe('Chimp', function () {
       var readyCallback = chokidar.watcher.once.mock.calls[0][1];
       readyCallback();
 
-      chimp.rerun = jest.genMockFunction();
+      chimp.rerun = jest.fn();
 
       self.allCallback('not-unlink');
 
@@ -229,11 +229,11 @@ describe('Chimp', function () {
       var Chimp = require('../lib/chimp.js');
 
       //var _on = process.on;
-      //process.on = jest.genMockFunction();
+      //process.on = jest.fn();
 
       var chimp = new Chimp();
 
-      chimp.run = jest.genMockFunction();
+      chimp.run = jest.fn();
 
       chimp.watch();
 
@@ -242,7 +242,7 @@ describe('Chimp', function () {
 
       var allCallback = chokidar.watcher.on.mock.calls[0][1];
 
-      chimp.rerun = jest.genMockFunction();
+      chimp.rerun = jest.fn();
 
       allCallback('unlink', '/path/some.feature');
 
@@ -260,7 +260,7 @@ describe('Chimp', function () {
 
       var chimp = new Chimp();
 
-      chimp.run = jest.genMockFunction();
+      chimp.run = jest.fn();
 
       var self = this;
       self.func = null;
@@ -275,7 +275,7 @@ describe('Chimp', function () {
       var readyCallback = chokidar.watcher.once.mock.calls[0][1];
       readyCallback();
 
-      chimp.rerun = jest.genMockFunction();
+      chimp.rerun = jest.fn();
 
       this.allCallback('unlink', '/path/some.feature.js');
 
@@ -290,7 +290,7 @@ describe('Chimp', function () {
 
       var chimp = new Chimp();
 
-      chimp.run = jest.genMockFunction();
+      chimp.run = jest.fn();
 
       chimp.watch();
 
@@ -334,7 +334,7 @@ describe('Chimp', function () {
       var Chimp = require('../lib/chimp.js');
       var chimp = new Chimp({serverPort: 1234});
 
-      chimp._startServer = jest.genMockFn();
+      chimp._startServer = jest.jest.fn();
 
       chimp.server();
 
@@ -387,7 +387,7 @@ describe('Chimp', function () {
 
       chimp.server();
       var getHandler = Hapi.instance.route.mock.calls[0][0].handler;
-      var headerMock = jest.genMockFn();
+      var headerMock = jest.jest.fn();
       var reply = jest.genMockFn().mockReturnValue({header: headerMock});
       getHandler(null, reply);
 
@@ -411,7 +411,7 @@ describe('Chimp', function () {
       chimp.server();
       var getHandler = Hapi.instance.route.mock.calls[1][0].handler;
       var request = {params: {absolutePath: 'blah'}};
-      var headerMock = jest.genMockFn();
+      var headerMock = jest.jest.fn();
       var reply = jest.genMockFn().mockReturnValue({header: headerMock});
       getHandler(request, reply);
 
@@ -434,7 +434,7 @@ describe('Chimp', function () {
 
       chimp.server();
       var interruptHandler = Hapi.instance.route.mock.calls[2][0].handler;
-      var headerMock = jest.genMockFn();
+      var headerMock = jest.jest.fn();
       var reply = jest.genMockFn().mockReturnValue({header: headerMock});
       interruptHandler(null, reply);
 
@@ -456,7 +456,7 @@ describe('Chimp', function () {
 
       chimp.server();
       var getHandler = Hapi.instance.route.mock.calls[3][0].handler;
-      var headerMock = jest.genMockFn();
+      var headerMock = jest.jest.fn();
       var reply = jest.genMockFn().mockReturnValue({header: headerMock});
       getHandler(null, reply);
 
@@ -478,7 +478,7 @@ describe('Chimp', function () {
         return callback();
       });
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       chimp.run(callback);
 
       expect(chimp.interrupt.mock.calls.length).toBe(2);
@@ -495,7 +495,7 @@ describe('Chimp', function () {
         return callback('error');
       });
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       chimp.run(callback);
 
       expect(callback.mock.calls.length).toBe(1);
@@ -514,9 +514,9 @@ describe('Chimp', function () {
         return callback();
       });
 
-      chimp.stop = jest.genMockFunction();
+      chimp.stop = jest.fn();
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       chimp.run(callback);
 
       expect(chimp.interrupt.mock.calls.length).toBe(2);
@@ -539,7 +539,7 @@ describe('Chimp', function () {
         return callback();
       });
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       chimp.run(callback);
 
       expect(SimianReporter.mock.calls[0][0]).toBe(options);
@@ -551,7 +551,7 @@ describe('Chimp', function () {
 
       jest.dontMock('../lib/simian-reporter');
       var SimianReporter = require('../lib/simian-reporter');
-      SimianReporter.prototype.report = jest.genMockFn();
+      SimianReporter.prototype.report = jest.jest.fn();
 
       var Chimp = require('../lib/chimp.js');
 
@@ -565,7 +565,7 @@ describe('Chimp', function () {
         return callback(null, [undefined, '[]']);
       });
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       chimp.run(callback);
 
       expect(SimianReporter.instance.report.mock.calls.length).toBe(1);
@@ -598,7 +598,7 @@ describe('Chimp', function () {
       var process2 = new Process('2');
       chimp.processes = [process1, process2];
 
-      var callback = jest.genMockFunction();
+      var callback = jest.fn();
 
       chimp.interrupt(callback);
 
@@ -613,14 +613,14 @@ describe('Chimp', function () {
       var Chimp = require('../lib/chimp');
 
       var chimp = new Chimp();
-      chimp.processes = [{interrupt: jest.genMockFn()}];
+      chimp.processes = [{interrupt: jest.fn()}];
       var someArgs = ['some', 'args'];
 
       async.series = jest.genMockFunction().mockImplementation(function (processes, callback) {
         callback.apply(this, someArgs);
       });
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       chimp.interrupt(callback);
 
       expect(callback.mock.calls.length).toBe(1);
@@ -636,9 +636,9 @@ describe('Chimp', function () {
       var chimp = new Chimp();
       chimp.isInterrupting = true;
 
-      async.series = jest.genMockFn();
+      async.series = jest.jest.fn();
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       chimp.interrupt(callback);
 
       expect(chimp.isInterrupting).toBe(false);
@@ -656,9 +656,9 @@ describe('Chimp', function () {
 
       chimp.isInterrupting = true;
       chimp.processes = ['yo'];
-      _.collect = jest.genMockFn();
+      _.collect = jest.jest.fn();
 
-      async.series = jest.genMockFn().mockImpl(function (procs, func) {
+      async.series = jest.genMockFn().mockImplementation(function (procs, func) {
         func();
       });
 
@@ -677,9 +677,9 @@ describe('Chimp', function () {
 
       chimp.isInterrupting = true;
       chimp.processes = ['yo'];
-      _.collect = jest.genMockFn();
+      _.collect = jest.jest.fn();
 
-      async.series = jest.genMockFn().mockImpl(function (procs, func) {
+      async.series = jest.genMockFn().mockImplementation(function (procs, func) {
         func('error');
       });
 
@@ -701,7 +701,7 @@ describe('Chimp', function () {
         callback(null);
       });
 
-      chimp.run = jest.genMockFn();
+      chimp.run = jest.jest.fn();
 
       chimp.rerun();
 
@@ -713,7 +713,7 @@ describe('Chimp', function () {
 
       var chimp = new Chimp();
 
-      chimp.run = jest.genMockFn();
+      chimp.run = jest.jest.fn();
 
       chimp.isInterrupting = true;
       chimp.rerun();
@@ -729,7 +729,7 @@ describe('Chimp', function () {
         callback(null);
         // after the first run, replace this mockImplementation with a standard mock so we
         // can assert on that the rerun interrupts after a successful run
-        chimp.run = jest.genMockFn();
+        chimp.run = jest.jest.fn();
       });
 
       chimp.rerun();
@@ -749,7 +749,7 @@ describe('Chimp', function () {
 
       var Chimp = require('../lib/chimp.js');
 
-      async.series = jest.genMockFn();
+      async.series = jest.jest.fn();
 
       var chimp = new Chimp();
       var processes = [];
@@ -781,7 +781,7 @@ describe('Chimp', function () {
       var processes = [new Process(), new Process()];
       chimp._createProcesses = jest.genMockFunction().mockReturnValue(processes);
 
-      var callback = jest.genMockFunction();
+      var callback = jest.fn();
 
       chimp._startProcesses(callback);
 
@@ -811,7 +811,7 @@ describe('Chimp', function () {
       var processes = [new Process('1'), new Process('2')];
       chimp._createProcesses = jest.genMockFunction().mockReturnValue(processes);
 
-      var callback = jest.genMockFunction();
+      var callback = jest.fn();
 
       chimp._startProcesses(callback);
 
@@ -830,10 +830,10 @@ describe('Chimp', function () {
       var chimp = new Chimp();
 
       chimp.isInterrupting = true;
-      chimp._createProcesses = jest.genMockFn();
+      chimp._createProcesses = jest.jest.fn();
       _.collect = jest.genMockFn().mockReturnValue(['yo']);
 
-      async.series = jest.genMockFn().mockImpl(function (procs, func) {
+      async.series = jest.genMockFn().mockImplementation(function (procs, func) {
         func('error');
       });
 

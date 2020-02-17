@@ -13,7 +13,7 @@ describe('process-helper', function () {
       processHelper.spawn = jest.genMockFn().mockReturnValue(child);
 
       var options = {};
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       var ret = processHelper.start(options, callback);
 
       expect(ret).toBe(child);
@@ -27,14 +27,14 @@ describe('process-helper', function () {
       var processHelper = require('../lib/process-helper.js');
 
       var child = {};
-      processHelper.spawn = jest.genMockFn();
+      processHelper.spawn = jest.jest.fn();
 
       processHelper.waitForMessage = jest.genMockFn().mockImplementation(function (options, child, callback) {
         callback.apply(this, [1, 2, 3, 4]);
       });
 
       var options = {waitForMessage: 'not null'};
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       var ret = processHelper.start(options, callback);
 
       expect(processHelper.waitForMessage.mock.calls.length).toBe(1);
@@ -52,7 +52,7 @@ describe('process-helper', function () {
       var cp = require('child_process'),
         processHelper = require('../lib/process-helper.js');
 
-      processHelper.logOutputs = jest.genMockFn();
+      processHelper.logOutputs = jest.jest.fn();
 
       var child = {};
       spyOn(cp, 'spawn').and.returnValue(child);
@@ -73,7 +73,7 @@ describe('process-helper', function () {
       var cp = require('child_process'),
         processHelper = require('../lib/process-helper.js');
 
-      processHelper.logOutputs = jest.genMockFn();
+      processHelper.logOutputs = jest.jest.fn();
 
       var child = {};
       spyOn(cp, 'spawn').and.returnValue(child);
@@ -131,7 +131,7 @@ describe('process-helper', function () {
 
       var processHelper = require('../lib/process-helper.js');
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
 
       var options = {
         prefix: '[apollo]',
@@ -177,7 +177,7 @@ describe('process-helper', function () {
 
       var processHelper = require('../lib/process-helper.js');
 
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
 
       var options = {
         prefix: '[apollo]',
@@ -230,7 +230,7 @@ describe('process-helper', function () {
           pid: 1234
         }
       };
-      var callback = jest.genMockFn();
+      var callback = jest.jest.fn();
       processHelper.kill(options, callback);
       jest.runAllTimers();
 
