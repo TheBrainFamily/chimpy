@@ -1,6 +1,6 @@
 {
   "name": "chimpy",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Develop acceptance tests & end-to-end tests with realtime feedback.",
   "keywords": [
     "simian",
@@ -29,7 +29,6 @@
   },
   "scripts": {
     "watch": "npm-watch",
-    "prepare": "npx babel src --ignore spec,__tests__/options-loader.js --out-dir ./dist",
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
     "start": "node ./scripts/run.js",
