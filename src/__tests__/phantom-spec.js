@@ -34,7 +34,7 @@ describe('Phantom', function () {
       var Phantom = require('../lib/phantom');
 
       var phantom = new Phantom({port: 9876});
-
+      processHelper.start = jest.fn();
       phantom.start();
 
       expect(processHelper.start.mock.calls.length).toBe(1);
@@ -47,6 +47,7 @@ describe('Phantom', function () {
       var Phantom = require('../lib/phantom');
 
       var childProcess = {};
+      processHelper.start = jest.fn();
       processHelper.start.mockReturnValue(childProcess);
 
       var phantom = new Phantom({port: 9876});
@@ -62,12 +63,12 @@ describe('Phantom', function () {
       var processHelper = require('../lib/process-helper');
       var Phantom = require('../lib/phantom');
 
-      processHelper.start = jest.genMockFn().mockImplementation(function (options, callback) {
+      processHelper.start = jest.fn().mockImplementation(function (options, callback) {
         callback();
       });
 
       var phantom = new Phantom({port: 9876});
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
 
       phantom.start(callback);
 
@@ -81,12 +82,12 @@ describe('Phantom', function () {
       var processHelper = require('../lib/process-helper');
       var Phantom = require('../lib/phantom');
 
-      processHelper.start = jest.genMockFn().mockImplementation = function (options, callback) {
+      processHelper.start = jest.fn(function (options, callback) {
         callback('error!');
-      };
+      });
 
       var phantom = new Phantom({port: 9876});
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
 
       phantom.start(callback);
 
@@ -102,8 +103,11 @@ describe('Phantom', function () {
       var phantom = new Phantom({port: 9876});
       phantom.child = 'not null';
 
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       phantom.start(callback);
+      processHelper.start = jest.fn(function (options, callback) {
+        callback('error!');
+      });
 
       expect(processHelper.start.mock.calls.length).toBe(0);
       expect(callback.mock.calls.length).toBe(1);
@@ -124,11 +128,11 @@ describe('Phantom', function () {
       var phantom = new Phantom({port: 9876});
       phantom.child = 'not null';
 
-      processHelper.kill = jest.genMockFn().mockImplementation(function (options, callback) {
+      processHelper.kill = jest.fn().mockImplementation(function (options, callback) {
         callback();
       });
 
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       phantom.stop(callback);
 
       expect(processHelper.kill.mock.calls.length).toBe(1);
@@ -146,9 +150,9 @@ describe('Phantom', function () {
       var phantom = new Phantom({port: 9876});
       phantom.child = null;
 
-      processHelper.kill = jest.genMockFn();
+      processHelper.kill = jest.fn();
 
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       phantom.stop(callback);
 
       expect(processHelper.kill.mock.calls.length).toBe(0);
@@ -165,11 +169,11 @@ describe('Phantom', function () {
       var phantom = new Phantom({port: 9876});
       phantom.child = 'not null';
 
-      processHelper.kill = jest.genMockFn().mockImplementation(function (options, callback) {
+      processHelper.kill = jest.fn().mockImplementation(function (options, callback) {
         callback('Error!');
       });
 
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       phantom.stop(callback);
 
       expect(processHelper.kill.mock.calls.length).toBe(1);
@@ -187,7 +191,7 @@ describe('Phantom', function () {
 
       var phantom = new Phantom({port: 9876});
 
-      phantom.stop = jest.genMockFn();
+      phantom.stop = jest.fn();
 
       var callback = 'callback';
       phantom.interrupt(callback);

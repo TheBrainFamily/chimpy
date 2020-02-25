@@ -32,22 +32,22 @@ describe('Session Manager', function () {
       var wd = require('xolvio-sync-webdriverio');
       var SessionManager = require('../lib/session-manager');
 
-      wd.remote = jest.genMockFn().
+      wd.remote = jest.fn().
         mockReturnValueOnce('return from remote1').
         mockReturnValueOnce('return from remote2');
       var sessionManager = new SessionManager({port: 1234, browser: 'phantomjs'});
 
       var sessions = [1234];
-      sessionManager._getWebdriverSessions = jest.genMockFn().mockImpl(function (callback) {
+      sessionManager._getWebdriverSessions = jest.fn().mockImplementation(function (callback) {
         callback(sessions);
       });
-      sessionManager._waitForConnection = jest.genMockFn().mockImpl(function (browser, callback) {
+      sessionManager._waitForConnection = jest.fn().mockImplementation(function (browser, callback) {
         callback();
       });
 
       var options = {some: 'options'};
 
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       sessionManager.remote(options, callback);
       sessionManager.remote(options, callback);
 
@@ -66,20 +66,20 @@ describe('Session Manager', function () {
       var SessionManager = require('../lib/session-manager');
 
       var browser = {};
-      wd.remote = jest.genMockFn().mockReturnValue(browser);
+      wd.remote = jest.fn().mockReturnValue(browser);
 
       var sessionManager = new SessionManager({port: 1234, browser: 'something'});
 
       var sessions = [];
-      sessionManager._getWebdriverSessions = jest.genMockFn().mockImpl(function (callback) {
+      sessionManager._getWebdriverSessions = jest.fn().mockImplementation(function (callback) {
         callback(null, sessions);
       });
-      sessionManager._waitForConnection = jest.genMockFn().mockImpl(function (browser, callback) {
+      sessionManager._waitForConnection = jest.fn().mockImplementation(function (browser, callback) {
         callback();
       });
 
       var options = {some: 'options'};
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       sessionManager.remote(options, callback);
 
       expect(callback.mock.calls[0][1]).toBe(browser);
@@ -95,20 +95,20 @@ describe('Session Manager', function () {
 
       process.env['chimp.watch'] = true;
       var browser = {_original: {requestHandler: {sessionID: 'some-id'}}};
-      wd.remote = jest.genMockFn().mockReturnValue(browser);
+      wd.remote = jest.fn().mockReturnValue(browser);
 
       var sessionManager = new SessionManager({port: 1234, browser: 'something'});
 
       var sessions = [{id: 'session-id'}];
-      sessionManager._getWebdriverSessions = jest.genMockFn().mockImplementation(function (callback) {
+      sessionManager._getWebdriverSessions = jest.fn().mockImplementation(function (callback) {
         callback(null, sessions);
       });
-      sessionManager._waitForConnection = jest.genMockFn().mockImpl(function (browser, callback) {
+      sessionManager._waitForConnection = jest.fn().mockImplementation(function (browser, callback) {
         callback();
       });
 
       var options = {some: 'options'};
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       sessionManager.remote(options, callback);
 
 
@@ -127,20 +127,20 @@ describe('Session Manager', function () {
 
       process.env['chimp.server'] = true;
       var browser = {_original: {requestHandler: {sessionID: 'some-id'}}};
-      wd.remote = jest.genMockFn().mockReturnValue(browser);
+      wd.remote = jest.fn().mockReturnValue(browser);
 
       var sessionManager = new SessionManager({port: 1234, browser: 'something'});
 
       var sessions = [{id: 'session-id'}];
-      sessionManager._getWebdriverSessions = jest.genMockFn().mockImplementation(function (callback) {
+      sessionManager._getWebdriverSessions = jest.fn().mockImplementation(function (callback) {
         callback(null, sessions);
       });
-      sessionManager._waitForConnection = jest.genMockFn().mockImpl(function (browser, callback) {
+      sessionManager._waitForConnection = jest.fn().mockImplementation(function (browser, callback) {
         callback();
       });
 
       var options = {some: 'options'};
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       sessionManager.remote(options, callback);
 
 
@@ -157,18 +157,18 @@ describe('Session Manager', function () {
       var wd = require('xolvio-sync-webdriverio');
       var SessionManager = require('../lib/session-manager');
 
-      wd.remote = jest.genMockFn().
+      wd.remote = jest.fn().
         mockReturnValueOnce('return from remote1').
         mockReturnValueOnce('return from remote2');
       var sessionManager = new SessionManager({port: 1234, browser: 'something'});
 
-      sessionManager._waitForConnection = jest.genMockFn().mockImpl(function (browser, callback) {
+      sessionManager._waitForConnection = jest.fn().mockImplementation(function (browser, callback) {
         callback();
       });
 
       var options = {some: 'options'};
       process.env['chimp.noSessionReuse'] = true;
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       sessionManager.remote(options, callback);
       sessionManager.remote(options, callback);
 
@@ -188,19 +188,19 @@ describe('Session Manager', function () {
       var wd = require('xolvio-sync-webdriverio');
       var SessionManager = require('../lib/session-manager');
 
-      wd.remote = jest.genMockFn().
+      wd.remote = jest.fn().
         mockReturnValueOnce('return from remote1').
         mockReturnValueOnce('return from remote2');
       var sessionManager = new SessionManager({port: 1234, browser: 'something'});
 
-      sessionManager._waitForConnection = jest.genMockFn().mockImpl(function (browser, callback) {
+      sessionManager._waitForConnection = jest.fn().mockImplementation(function (browser, callback) {
         callback();
       });
 
       var options = {some: 'options'};
       process.env['chimp.watch'] = true;
       process.env['chimp.noSessionReuse'] = true;
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       sessionManager.remote(options, callback);
       sessionManager.remote(options, callback);
 
@@ -221,19 +221,19 @@ describe('Session Manager', function () {
       var SessionManager = require('../lib/session-manager');
       var sessionManager = new SessionManager({port: 1234, browser: 'somebrowser'});
       var sessions = [];
-      sessionManager._getWebdriverSessions = jest.genMockFn().mockImplementation(function (callback) {
+      sessionManager._getWebdriverSessions = jest.fn().mockImplementation(function (callback) {
         callback(null, sessions);
       });
-      sessionManager._waitForConnection = jest.genMockFn().mockImpl(function (browser, callback) {
+      sessionManager._waitForConnection = jest.fn().mockImplementation(function (browser, callback) {
         callback();
       });
 
-      wd.remote = jest.genMockFn();
+      wd.remote = jest.fn();
       process.env['chimp.watch'] = true;
-      sessionManager._monkeyPatchBrowserSessionManagement = jest.genMockFn();
+      sessionManager._monkeyPatchBrowserSessionManagement = jest.fn();
 
       var options = {some: 'options'};
-      var callback = jest.genMockFn();
+      var callback = jest.fn();
       sessionManager.remote(options, callback);
 
       expect(sessionManager._monkeyPatchBrowserSessionManagement.mock.calls.length).toBe(1);

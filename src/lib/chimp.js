@@ -1,7 +1,7 @@
 /**
  * Externals
  */
-var async = require('async'),
+let async = require('async'),
   path = require('path'),
   chokidar = require('chokidar'),
   _ = require('underscore'),
@@ -16,19 +16,19 @@ var async = require('async'),
   Versions = require('../lib/versions');
 
 colors.enabled = true;
-var DEFAULT_COLOR = 'yellow';
+const DEFAULT_COLOR = 'yellow';
 
 /**
  * Internals
  */
-exports.Mocha = require('./mocha/mocha.js');
-exports.Jasmine = require('./jasmine/jasmine.js');
-exports.Cucumber = require('./cucumberjs/cucumber.js');
-exports.Phantom = require('./phantom.js');
-exports.Chromedriver = require('./chromedriver.js');
-exports.Consoler = require('./consoler.js');
-exports.Selenium = require('./selenium.js');
-exports.SimianReporter = require('./simian-reporter.js');
+const Mocha = require('./mocha/mocha.js');
+const Jasmine = require('./jasmine/jasmine.js');
+const Cucumber = require('./cucumberjs/cucumber.js');
+const Phantom = require('./phantom.js');
+const Chromedriver = require('./chromedriver.js');
+const Consoler = require('./consoler.js');
+const Selenium = require('./selenium.js');
+const SimianReporter = require('./simian-reporter.js');
 
 /**
  * Exposes the binary path
@@ -39,7 +39,7 @@ Chimp.bin = path.resolve(__dirname, path.join('..', 'bin', 'chimp'));
 
 Chimp.install = function (callback) {
   log.debug('[chimp]', 'Installing dependencies');
-  new exports.Selenium({port: '1'}).install(callback);
+  new Selenium({port: '1'}).install(callback);
 };
 
 /**
@@ -52,7 +52,6 @@ Chimp.install = function (callback) {
  * @api public
  */
 function Chimp(options) {
-
   this.chokidar = chokidar;
   this.options = options || {};
   this.processes = [];
@@ -64,11 +63,11 @@ function Chimp(options) {
 
   // store all cli parameters in env hash
   // Note: Environment variables are always strings.
-  for (var option in options) {
+  for (const option in options) {
     if (option === 'ddp') {
       handleDdpOption(options);
     } else {
-      process.env['chimp.' + option] = _.isObject(options[option]) ?
+      process.env[`chimp.${option}`] = _.isObject(options[option]) ?
        JSON.stringify(options[option]) :
        String(options[option]);
     }
@@ -83,8 +82,8 @@ function handleDdpOption(options) {
     return;
   }
   if (Array.isArray(options.ddp)) {
-    options.ddp.forEach(function(val, index){
-      process.env['chimp.ddp' + index] = String(val);
+    options.ddp.forEach((val, index) => {
+      process.env[`chimp.ddp${index}`] = String(val);
     });
   }
 }
@@ -96,7 +95,7 @@ function handleDdpOption(options) {
  * @api public
  */
 Chimp.prototype.init = function (callback) {
-  var self = this;
+  const self = this;
 
   this.informUser();
 
@@ -112,20 +111,17 @@ Chimp.prototype.init = function (callback) {
     const versions = new Versions(this.options);
     if (this.options.debug) {
       versions.show(() => {
-        self.selectMode(callback)
+        self.selectMode(callback);
       });
-    }
-    else {
+    } else {
       versions.show();
     }
-  }
-  else {
+  } else {
     self.selectMode(callback);
   }
 };
 
 Chimp.prototype.informUser = function () {
-
   if (this.options.showXolvioMessages) {
     log.info('\nMaster Chimp and become a testing Ninja! Check out our course: '.green + 'http://bit.ly/2btQaFu\n'.blue.underline);
   }
@@ -174,7 +170,7 @@ Chimp.prototype._initSimianResultBranch = function () {
       throw new Error(
         'You have not specified the branch that should be reported to Simian!' +
         ' Do this with the --simianResultBranch argument' +
-        ' or the CI_BRANCH environment variable.'
+        ' or the CI_BRANCH environment variable.',
       );
     }
   }
@@ -203,7 +199,6 @@ Chimp.prototype._initSimianBuildNumber = function _initSimianBuildNumber() {
  * @api public
  */
 Chimp.prototype.selectMode = function (callback) {
-
   if (booleanHelper.isTruthy(this.options.watch)) {
     this.watch();
   } else if (booleanHelper.isTruthy(this.options.server)) {
@@ -211,7 +206,6 @@ Chimp.prototype.selectMode = function (callback) {
   } else {
     this.run(callback);
   }
-
 };
 
 /**
@@ -220,10 +214,9 @@ Chimp.prototype.selectMode = function (callback) {
  * @api public
  */
 Chimp.prototype.watch = function () {
+  const self = this;
 
-  var self = this;
-
-  var watchDirectories = [];
+  let watchDirectories = [];
   if (self.options.watchSource) {
     watchDirectories = (self.options.watchSource.split(','));
   }
@@ -242,7 +235,7 @@ Chimp.prototype.watch = function () {
     ignored: /[\/\\](\.|node_modules)/,
     ignoreInitial: true,
     persistent: true,
-    usePolling: this.options.watchWithPolling
+    usePolling: this.options.watchWithPolling,
   });
 
   // set cucumber tags to be watch based
@@ -251,30 +244,27 @@ Chimp.prototype.watch = function () {
   }
 
   if (booleanHelper.isTruthy(self.options.ddp)) {
-    var autoUpdateWatcher = new AutoupdateWatcher(self.options);
-    autoUpdateWatcher.watch(function () {
+    const autoUpdateWatcher = new AutoupdateWatcher(self.options);
+    autoUpdateWatcher.watch(() => {
       log.debug('[chimp] Meteor autoupdate detected');
       self.rerun();
     });
   }
 
   // wait for initial file scan to complete
-  this.watcher.once('ready', function () {
-
-    var watched = [];
+  this.watcher.once('ready', () => {
+    const watched = [];
     if (_.isArray(self.options.watchTags)) {
       _.each(self.options.watchTags, (watchTag) => {
         watched.push(watchTag.split(','));
       });
-    }
-    else if (_.isString(self.options.watchTags)) {
+    } else if (_.isString(self.options.watchTags)) {
       watched.push(self.options.watchTags.split(','));
     }
     log.info(`[chimp] Watching features with tagged with ${watched.join()}`.white);
 
     // start watching
-    self.watcher.on('all', self._getDebouncedFunction(function (event, path) {
-
+    self.watcher.on('all', self._getDebouncedFunction((event, path) => {
       // removing feature files should not rerun
       if (event === 'unlink' && path.match(/\.feature$/)) {
         return;
@@ -282,14 +272,11 @@ Chimp.prototype.watch = function () {
 
       log.debug('[chimp] file changed');
       self.rerun();
-
     }, 500));
 
     log.debug('[chimp] watcher ready, running for the first time');
     self.rerun();
-
   });
-
 };
 
 Chimp.prototype._getDebouncedFunction = function (func, timeout) {
@@ -303,9 +290,9 @@ Chimp.prototype._getDebouncedFunction = function (func, timeout) {
  * @api public
  */
 Chimp.prototype.server = function () {
-  var self = this;
+  const self = this;
   if (!this.options.serverPort) {
-    freeport(function (error, port) {
+    freeport((error, port) => {
       if (error) {
         throw error;
       }
@@ -314,17 +301,15 @@ Chimp.prototype.server = function () {
   } else {
     self._startServer(this.options.serverPort);
   }
-
 };
 
 Chimp.prototype._startServer = function (port) {
-
-  var server = new Hapi.Server();
+  const server = new Hapi.Server();
 
   server.connection({
     host: this.options.serverHost,
-    port: port,
-    routes: {timeout: {server: false, socket: false}}
+    port,
+    routes: {timeout: {server: false, socket: false}},
   });
 
   this._setupRoutes(server);
@@ -336,11 +321,10 @@ Chimp.prototype._startServer = function (port) {
   if (booleanHelper.isTruthy(this.options.ddp)) {
     this._handshakeOverDDP();
   }
-
 };
 
 Chimp.prototype._handshakeOverDDP = function () {
-  var ddp = new DDPClient({
+  const ddp = new DDPClient({
     host: process.env['chimp.ddp'].match(/http:\/\/(.*):/)[1],
     port: process.env['chimp.ddp'].match(/:([0-9]+)/)[1],
     ssl: false,
@@ -348,16 +332,16 @@ Chimp.prototype._handshakeOverDDP = function () {
     autoReconnectTimer: 500,
     maintainCollections: true,
     ddpVersion: '1',
-    useSockJs: true
+    useSockJs: true,
   });
-  ddp.connect(function (error) {
+  ddp.connect((error) => {
     if (error) {
       log.error('[chimp] Error handshaking via DDP');
       throw (error);
     }
-  }).then(function () {
+  }).then(() => {
     log.debug('[chimp] Handshaking with DDP server');
-    ddp.call('handshake').then(function () {
+    ddp.call('handshake').then(() => {
       log.debug('[chimp] Handshake complete, closing DDP connection');
       ddp.close();
     });
@@ -366,7 +350,7 @@ Chimp.prototype._handshakeOverDDP = function () {
 
 Chimp.prototype._parseResult = function (res) {
   // FIXME this is shitty, there's got to be a nicer way to deal with variable async chains
-  var cucumberResults = res[1][1] ? res[1][1] : res[1][0];
+  const cucumberResults = res[1][1] ? res[1][1] : res[1][0];
   if (!cucumberResults) {
     log.error('[chimp] Could not get Cucumber Results from run result:');
     log.error(res);
@@ -377,53 +361,52 @@ Chimp.prototype._parseResult = function (res) {
 };
 
 Chimp.prototype._setupRoutes = function (server) {
-  var self = this;
+  const self = this;
   server.route({
     method: 'GET',
     path: '/run',
-    handler: function (request, reply) {
-      self.rerun(function (err, res) {
-        var cucumberResults = self._parseResult(res);
+    handler(request, reply) {
+      self.rerun((err, res) => {
+        const cucumberResults = self._parseResult(res);
         reply(cucumberResults).header('Content-Type', 'application/json');
       });
-    }
+    },
   });
   server.route({
     method: 'GET',
     path: '/run/{absolutePath*}',
-    handler: function (request, reply) {
-      /// XXX is there a more elegant way we can do this?
+    handler(request, reply) {
+      // / XXX is there a more elegant way we can do this?
       self.options._[2] = request.params.absolutePath;
-      self.rerun(function (err, res) {
-        var cucumberResults = self._parseResult(res);
+      self.rerun((err, res) => {
+        const cucumberResults = self._parseResult(res);
         reply(cucumberResults).header('Content-Type', 'application/json');
       });
-    }
+    },
   });
   server.route({
     method: 'GET',
     path: '/interrupt',
-    handler: function (request, reply) {
-      self.interrupt(function (err, res) {
+    handler(request, reply) {
+      self.interrupt((err, res) => {
         reply('done').header('Content-Type', 'application/json');
       });
-    }
+    },
   });
   server.route({
     method: 'GET',
     path: '/runAll',
-    handler: function (request, reply) {
+    handler(request, reply) {
       self.options._tags = self.options.tags;
       self.options.tags = '~@ignore';
-      self.rerun(function (err, res) {
+      self.rerun((err, res) => {
         self.options.tags = self.options._tags;
-        var cucumberResults = self._parseResult(res);
+        const cucumberResults = self._parseResult(res);
         reply(cucumberResults).header('Content-Type', 'application/json');
       });
-    }
+    },
   });
 };
-
 
 
 /**
@@ -432,10 +415,9 @@ Chimp.prototype._setupRoutes = function (server) {
  * @api public
  */
 Chimp.prototype.run = function (callback) {
+  log.info('\n[chimp] Running...'[DEFAULT_COLOR]);
 
-  log.info(`\n[chimp] Running...`[DEFAULT_COLOR]);
-
-  var self = this;
+  const self = this;
 
   function getJsonCucumberResults(result) {
     const startProcessesIndex = 1;
@@ -445,7 +427,7 @@ Chimp.prototype.run = function (callback) {
 
     let jsonResult = '[]';
     _.any(['domain', 'e2e', 'generic'], (type) => {
-      let _testRunner = _.findWhere(self.testRunnerRunOrder, {name: 'cucumber', type});
+      const _testRunner = _.findWhere(self.testRunnerRunOrder, {name: 'cucumber', type});
       if (_testRunner) {
         jsonResult = result[startProcessesIndex][_testRunner.index];
         return true;
@@ -460,7 +442,7 @@ Chimp.prototype.run = function (callback) {
       self._startProcesses.bind(self),
       self.interrupt.bind(self),
     ],
-    function (error, result) {
+    (error, result) => {
       if (error) {
         log.debug('[chimp] run complete with errors', error);
         if (booleanHelper.isFalsey(self.options.watch)) {
@@ -474,16 +456,15 @@ Chimp.prototype.run = function (callback) {
         self.options.simianResultBranch !== false
       ) {
         const jsonCucumberResult = getJsonCucumberResults(result);
-        const simianReporter = new exports.SimianReporter(self.options);
+        const simianReporter = new SimianReporter(self.options);
         simianReporter.report(jsonCucumberResult, () => {
           callback(error, result);
         });
       } else {
         callback(error, result);
       }
-    }
+    },
   );
-
 };
 
 /**
@@ -493,10 +474,9 @@ Chimp.prototype.run = function (callback) {
  * @api public
  */
 Chimp.prototype.interrupt = function (callback) {
-
   log.debug('[chimp] interrupting');
 
-  var self = this;
+  const self = this;
 
 
   self.isInterrupting = true;
@@ -512,14 +492,12 @@ Chimp.prototype.interrupt = function (callback) {
 
   log.debug('[chimp]', self.processes.length, 'processes to interrupt');
 
-  var reverseProcesses = [];
+  const reverseProcesses = [];
   while (self.processes.length !== 0) {
     reverseProcesses.push(self.processes.pop());
   }
 
-  var processes = _.collect(reverseProcesses, function (process) {
-    return process.interrupt.bind(process);
-  });
+  const processes = _.collect(reverseProcesses, process => process.interrupt.bind(process));
 
   async.series(processes, function (error, r) {
     self.isInterrupting = false;
@@ -531,7 +509,6 @@ Chimp.prototype.interrupt = function (callback) {
       callback.apply(this, arguments);
     }
   });
-
 };
 
 /**
@@ -540,17 +517,16 @@ Chimp.prototype.interrupt = function (callback) {
  * @api public
  */
 Chimp.prototype.rerun = function (callback) {
-
   log.debug('[chimp] rerunning');
 
-  var self = this;
+  const self = this;
 
   if (self.isInterrupting) {
     log.debug('[chimp] interrupt in progress, ignoring rerun');
     return;
   }
 
-  self.run(function (err, res) {
+  self.run((err, res) => {
     if (callback) {
       callback(err, res);
     }
@@ -564,30 +540,26 @@ Chimp.prototype.rerun = function (callback) {
  * @api private
  */
 Chimp.prototype._startProcesses = function (callback) {
-
-  var self = this;
+  const self = this;
 
   self.processes = self._createProcesses();
 
 
-  var processes = _.collect(self.processes, function (process) {
-    return process.start.bind(process);
-  });
+  const processes = self.processes.map(process => process.start.bind(process));
 
   // pushing at least one processes guarantees the series below runs
-  processes.push(function (callback) {
+  processes.push((callback) => {
     log.debug('[chimp] Finished running async processes');
     callback();
   });
 
-  async.series(processes, function (err, res) {
+  async.series(processes, (err, res) => {
     if (err) {
       self.isInterrupting = false;
       log.debug('[chimp] Finished running async processes with errors');
     }
     callback(err, res);
   });
-
 };
 
 /**
@@ -596,107 +568,95 @@ Chimp.prototype._startProcesses = function (callback) {
  * @api private
  */
 Chimp.prototype._createProcesses = function () {
-
-  var processes = [];
+  const processes = [];
   const self = this;
 
   const addTestRunnerToRunOrder = function (name, type) {
     self.testRunnerRunOrder.push({name, type, index: processes.length - 1});
   };
 
-  const userHasNotProvidedSeleniumHost = function() {
+  const userHasNotProvidedSeleniumHost = function () {
     return booleanHelper.isFalsey(self.options.host);
   };
 
-  const userHasProvidedBrowser = function() {
+  const userHasProvidedBrowser = function () {
     return booleanHelper.isTruthy(self.options.browser);
   };
 
   if (!this.options.domainOnly) {
     if (this.options.browser === 'phantomjs') {
       process.env['chimp.host'] = this.options.host = 'localhost';
-      var phantom = new exports.Phantom(this.options);
+      const phantom = new Phantom(this.options);
       processes.push(phantom);
-    }
-
-    else if (userHasProvidedBrowser() && userHasNotProvidedSeleniumHost()) {
+    } else if (userHasProvidedBrowser() && userHasNotProvidedSeleniumHost()) {
       process.env['chimp.host'] = this.options.host = 'localhost';
-      var selenium = new exports.Selenium(this.options);
+      const selenium = new Selenium(this.options);
       processes.push(selenium);
-    }
-
-    else if (userHasNotProvidedSeleniumHost()) {
+    } else if (userHasNotProvidedSeleniumHost()) {
       // rewrite the browser to be chrome since "chromedriver" is not a valid browser
       process.env['chimp.browser'] = this.options.browser = 'chrome';
       process.env['chimp.host'] = this.options.host = 'localhost';
-      var chromedriver = new exports.Chromedriver(this.options);
+      const chromedriver = new Chromedriver(this.options);
       processes.push(chromedriver);
     }
   }
 
   if (booleanHelper.isTruthy(this.options.mocha)) {
-    var mocha = new exports.Mocha(this.options);
+    const mocha = new Mocha(this.options);
     processes.push(mocha);
   } else if (booleanHelper.isTruthy(this.options.jasmine)) {
-    const jasmine = new exports.Jasmine(this.options);
+    const jasmine = new Jasmine(this.options);
     processes.push(jasmine);
-  } else {
-    if (booleanHelper.isTruthy(this.options.e2eSteps) || booleanHelper.isTruthy(this.options.domainSteps)) {
+  } else if (booleanHelper.isTruthy(this.options.e2eSteps) || booleanHelper.isTruthy(this.options.domainSteps)) {
       // domain scenarios
-      if (booleanHelper.isTruthy(this.options.domainSteps)) {
-        const options = JSON.parse(JSON.stringify(this.options));
-        if (options.r) {
-          options.r = _.isArray(options.r) ? options.r : [options.r];
-        } else {
-          options.r = [];
-        }
-        const message = '\n[chimp] domain scenarios...';
-        options.r.push(options.domainSteps);
-
-        if (booleanHelper.isTruthy(options.fullDomain)) {
-          delete options.tags;
-        }
-
-        if (!this.options.domainOnly) {
-          processes.push(new exports.Consoler(message[DEFAULT_COLOR]));
-        }
-        processes.push(new exports.Cucumber(options));
-        addTestRunnerToRunOrder('cucumber', 'domain');
-        processes.push(new exports.Consoler(''));
+    if (booleanHelper.isTruthy(this.options.domainSteps)) {
+      const options = JSON.parse(JSON.stringify(this.options));
+      if (options.r) {
+        options.r = _.isArray(options.r) ? options.r : [options.r];
+      } else {
+        options.r = [];
       }
-      if (booleanHelper.isTruthy(this.options.e2eSteps)) {
+      const message = '\n[chimp] domain scenarios...';
+      options.r.push(options.domainSteps);
+
+      if (booleanHelper.isTruthy(options.fullDomain)) {
+        delete options.tags;
+      }
+
+      if (!this.options.domainOnly) {
+        processes.push(new Consoler(message[DEFAULT_COLOR]));
+      }
+      processes.push(new Cucumber(options));
+      addTestRunnerToRunOrder('cucumber', 'domain');
+      processes.push(new Consoler(''));
+    }
+    if (booleanHelper.isTruthy(this.options.e2eSteps)) {
         // e2e scenarios
-        const options = JSON.parse(JSON.stringify(this.options));
-        if (options.r) {
-          options.r = _.isArray(options.r) ? options.r : [options.r];
-        } else {
-          options.r = [];
-        }
-
-        options.tags = options.tags.split(',');
-        options.tags.push(options.e2eTags);
-        options.tags = options.tags.join();
-
-        const message = `\n[chimp] ${options.e2eTags} scenarios ...`;
-        options.r.push(options.e2eSteps);
-        processes.push(new exports.Consoler(message[DEFAULT_COLOR]));
-        processes.push(new exports.Cucumber(options));
-        addTestRunnerToRunOrder('cucumber', 'e2e');
-        processes.push(new exports.Consoler(''));
+      const options = JSON.parse(JSON.stringify(this.options));
+      if (options.r) {
+        options.r = _.isArray(options.r) ? options.r : [options.r];
+      } else {
+        options.r = [];
       }
+
+      options.tags = options.tags.split(',');
+      options.tags.push(options.e2eTags);
+      options.tags = options.tags.join();
+
+      const message = `\n[chimp] ${options.e2eTags} scenarios ...`;
+      options.r.push(options.e2eSteps);
+      processes.push(new Consoler(message[DEFAULT_COLOR]));
+      processes.push(new Cucumber(options));
+      addTestRunnerToRunOrder('cucumber', 'e2e');
+      processes.push(new Consoler(''));
     }
-
-
-    else {
-      const cucumber = new exports.Cucumber(this.options);
-      processes.push(cucumber);
-      addTestRunnerToRunOrder('cucumber', 'generic');
-    }
-
+  } else {
+    const cucumber = new Cucumber(this.options);
+    processes.push(cucumber);
+    addTestRunnerToRunOrder('cucumber', 'generic');
   }
 
   return processes;
-
 };
 
 /**
@@ -705,15 +665,15 @@ Chimp.prototype._createProcesses = function () {
  * @api private
  */
 Chimp.prototype._handleChimpInterrupt = function () {
-  var self = this;
-    process.on('SIGINT', function () {
-      log.debug('[chimp] SIGINT detected, killing process');
-      process.stdin.end();
-      self.interrupt();
-      if (booleanHelper.isTruthy(self.options.watch)) {
-        self.watcher.close();
-      }
-    });
+  const self = this;
+  process.on('SIGINT', () => {
+    log.debug('[chimp] SIGINT detected, killing process');
+    process.stdin.end();
+    self.interrupt();
+    if (booleanHelper.isTruthy(self.options.watch)) {
+      self.watcher.close();
+    }
+  });
 };
 
 module.exports = Chimp;

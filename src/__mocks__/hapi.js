@@ -2,9 +2,9 @@
 
 var Hapi = {
   instance: {
-    connection: jest.genMockFn(),
-    route: jest.genMockFn(),
-    start: jest.genMockFn()
+    connection: jest.fn(),
+    route: jest.fn(),
+    start: jest.fn(),
   },
   Server: function () {
     return Hapi.instance;

@@ -12,7 +12,7 @@ describe('Simian reporter', function () {
       simianAccessToken: 'secretToken'
     });
 
-    var callback = jest.genMockFunction();
+    var callback = jest.fn();
     var result = [{id: 'Use-browser-inside-steps'}];
     simianReporter.report(result, callback);
 
@@ -47,7 +47,7 @@ describe('Simian reporter', function () {
     const log = require('../lib/log');
     spyOn(log, 'error');
 
-    var callback = jest.genMockFunction();
+    var callback = jest.fn();
     var result = [{id: 'Use-browser-inside-steps'}];
     simianReporter.report(result, callback);
 
@@ -78,7 +78,7 @@ describe('Simian reporter', function () {
     const log = require('../lib/log');
     spyOn(log, 'error');
 
-    var callback = jest.genMockFunction();
+    var callback = jest.fn();
     var result = [{id: 'Use-browser-inside-steps'}];
     simianReporter.report(result, callback);
 

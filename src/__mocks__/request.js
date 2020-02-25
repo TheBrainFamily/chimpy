@@ -2,6 +2,6 @@
 
 module.exports = {
 
-  post: jest.genMockFunction()
+  post: jest.fn()
 
 };

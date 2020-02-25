@@ -24,6 +24,9 @@ describe('Chimp', function () {
     td.replace('./selenium.js', {});
     td.replace('./simian-reporter.js', {});
   });
+  after(function () {
+    td.reset();
+  });
   describe('constructor', function () {
     beforeEach(function () {
       this.chimp = new Chimp();
