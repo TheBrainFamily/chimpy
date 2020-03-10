@@ -86,7 +86,7 @@
     "chokidar": "^2.1.6",
     "colors": "1.1.2",
     "commander": "^2.20.0",
-    "cucumber": "git+ssh://github.com:TheBrainFamily/cucumber-js#v1.3.0-chimp.7",
+    "cucumber": "github:TheBrainFamily/cucumber-js#v1.3.0-chimp.7",
     "deep-extend": "^0.6.0",
     "exit": "^0.1.2",
     "fibers": "^3.1.0",
