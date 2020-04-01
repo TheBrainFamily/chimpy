@@ -1,6 +1,6 @@
 {
   "name": "chimpy",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "Develop acceptance tests & end-to-end tests with realtime feedback.",
   "keywords": [
     "simian",
