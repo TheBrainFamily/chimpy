@@ -1,3 +1,4 @@
+# 3.0.4
 # 2.0.0
 
 * Removed console log, added msg how to install chromedriver (rcywinski) 
