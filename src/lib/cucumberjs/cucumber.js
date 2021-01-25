@@ -60,6 +60,26 @@ class Cucumber {
       }
     }
 
+    if (this.options.inspectCucumber) {
+      port = parseInt(this.options.inspectCucumber);
+
+      if (port > 1) {
+        opts.execArgv = ['--inspect=' + port];
+      } else {
+        opts.execArgv = ['--inspect'];
+      }
+    }
+
+    if (this.options.inspectCucumberBrk) {
+      port = parseInt(this.options.inspectBrkCucumber);
+
+      if (port > 1) {
+        opts.execArgv = ['--inspect-brk=' + port];
+      } else {
+        opts.execArgv = ['--inspect-brk'];
+      }
+    }
+
     this.cucumberChild = cp.fork(path.join(__dirname, 'cucumber-wrapper.js'), args, opts);
 
     if (booleanHelper.isTruthy(this.options.conditionOutput)) {

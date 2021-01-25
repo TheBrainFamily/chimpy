@@ -61,6 +61,7 @@ Use the `debugger;` statement in your code to create a breakpoints. You can plac
 
 ## 2. Tell Chimpy to start Cucumber in debug mode
 
+### In Node < 8.0
 You can use these command line switched to do that:
 
 ```shell
@@ -69,12 +70,29 @@ chimpy --debugCucumber
 chimpy --debugCucumber=<port>
 ```
 
-To debug mode and break on start:
+To turn on debug mode and break on start:
 
 ```shell
 chimpy --debugBrkCucumber
 # or
 chimpy --debugBrkCucumber=<port>
+```
+
+### In Node >= 8.0
+You can use these command line switched to do that:
+
+```shell
+chimpy --inspectCucumber
+# or
+chimpy --inspectCucumber=<port>
+```
+
+To turn on inspect mode and break on start:
+
+```shell
+chimpy --inspectBrkCucumber
+# or
+chimpy --inspectBrkCucumber=<port>
 ```
 
 You can then connect your favorite debugger and enjoy!
@@ -88,6 +106,7 @@ Use the `debugger;` statement in your code to create a breakpoints. You can plac
 
 ## 2. Tell Chimpy to start Mocha in debug mode
 
+### In Node < 8.0
 You can use these command line switched to do that:
 
 ```shell
@@ -102,6 +121,23 @@ To use debug mode and break on start use:
 chimpy --debugBrkMocha
 # or
 chimpy --debugBrkMocha=<port>
+```
+
+### In Node >= 8.0
+You can use these command line switched to do that:
+
+```shell
+chimpy --inspectMocha
+# or
+chimpy --inspectMocha=<port>
+```
+
+To turn on inspect mode and break on start:
+
+```shell
+chimpy --inspectBrkMocha
+# or
+chimpy --inspectBrkMocha=<port>
 ```
 
 #### *Want to become a testing Ninja?*
