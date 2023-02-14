@@ -29,6 +29,7 @@
   "scripts": {
     "watch": "npm-watch",
     "prepare": "npx babel src --ignore spec,__tests__/options-loader.js --out-dir ./dist",
+    "postinstall": "npm run prepare",
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
     "start": "node ./scripts/run.js",
