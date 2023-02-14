@@ -136,6 +136,7 @@
   },
   "directories": {
     "doc": "docs",
-    "test": "tests"
+    "test": "tests",
+    "src": "src"
   }
 }
