@@ -821,18 +821,6 @@ describe('Chimp', () => {
   });
 
   describe('_createProcesses', () => {
-    it('adds a phantom', () => {
-      const Phantom = require('../lib/phantom.js');
-      const Chimp = require('../lib/chimp.js');
-
-      const options = {browser: 'phantomjs'};
-      const chimp = new Chimp(options);
-
-      const processes = chimp._createProcesses();
-
-      expect(Phantom.mock.calls[0][0]).toBe(options);
-      expect(processes.length).toBe(2);
-    });
 
     it('adds a selenium when no browser is passed', () => {
       let Selenium = require('../lib/selenium.js');
@@ -861,25 +849,5 @@ describe('Chimp', () => {
       expect(processes.length).toBe(1);
     });
 
-    it('adds cucumber last', () => {
-
-      const Chimp = require('../lib/chimp.js');
-      const options = {browser: 'phantomjs'};
-
-      const chimp = new Chimp(options);
-
-      const processes = chimp._createProcesses();
-
-      expect(typeof processes[0].cucumberChild).toBe('undefined');
-      expect(typeof processes[1].cucumberChild).not.toBe('undefined');
-    });
-
-    it('should add at least one process', () => {
-      const chimp = new Chimp({browser: 'phantomjs'});
-
-      const processes = chimp._createProcesses();
-
-      expect(processes.length).not.toBe(0);
-    });
   });
 });

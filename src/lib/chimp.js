@@ -24,7 +24,6 @@ const DEFAULT_COLOR = 'yellow';
 const Mocha = require('./mocha/mocha.js');
 const Jasmine = require('./jasmine/jasmine.js');
 const Cucumber = require('./cucumberjs/cucumber.js');
-const Phantom = require('./phantom.js');
 const Chromedriver = require('./chromedriver.js');
 const Consoler = require('./consoler.js');
 const Selenium = require('./selenium.js');
@@ -585,9 +584,7 @@ Chimp.prototype._createProcesses = function () {
 
   if (!this.options.domainOnly) {
     if (this.options.browser === 'phantomjs') {
-      process.env['chimp.host'] = this.options.host = 'localhost';
-      const phantom = new Phantom(this.options);
-      processes.push(phantom);
+      console.error("PhantomJS is not supported");
     } else if (userHasProvidedBrowser() && userHasNotProvidedSeleniumHost()) {
       process.env['chimp.host'] = this.options.host = 'localhost';
       const selenium = new Selenium(this.options);
