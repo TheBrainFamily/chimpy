@@ -55,6 +55,7 @@ jobs:
         with:
           node-version: 8.11.4
           verify-tests: false
+          inputs.publish-tag: false
           npm-token: ${{ secrets.NPM_TOKEN }}
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
 
