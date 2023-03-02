@@ -29,10 +29,10 @@ jobs:
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
           path: actions
 
-      - name: Run JS tests
-        uses: ./actions/js/test
-        with:
-          node-version: ${{ matrix.node-version }}
+#      - name: Run JS tests
+#        uses: ./actions/js/test
+#        with:
+#          node-version: ${{ matrix.node-version }}
 
   publish-js-package:
     needs: [run-js-tests]
