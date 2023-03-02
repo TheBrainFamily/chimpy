@@ -1,0 +1,59 @@
+name: Continuous testing and publication to NPM from 'master'
+
+on:
+  workflow_dispatch:
+  push:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+
+jobs:
+
+  run-js-tests:
+    runs-on: ubuntu-latest
+    if: github.repository != 'Exabyte-io/template-definitions'
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v2
+
+      - name: Checkout actions repository
+        uses: actions/checkout@v2
+        with:
+          repository: Exabyte-io/actions
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          path: actions
+
+      - name: Run JS tests
+        uses: ./actions/js/test
+        with:
+          node-version: ${{ matrix.node-version }}
+
+  publish-js-package:
+    needs: [run-js-tests]
+    runs-on: ubuntu-latest
+    if: (github.repository != 'Exabyte-io/template-definitions') && (github.ref_name == 'master')
+
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v2
+
+      - name: Checkout actions repository
+        uses: actions/checkout@v2
+        with:
+          repository: Exabyte-io/actions
+          token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          path: actions
+
+      - name: Publish JS release
+        uses: ./actions/js/publish
+        with:
+          node-version: 12.21.x
+          npm-token: ${{ secrets.NPM_TOKEN }}
+          github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
+
