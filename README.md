@@ -1,3 +1,7 @@
+> Mat3ra (github.com/exabyte-io) is not a maintainer of this package. The current version is a temporary workaround to make the package usable on M1 Macs with Node 8 by removing phantomjs dependency.
+
+---
+
 Package requires chromedriver to be installed as a dependency in your project.
 
 To install both packages:
