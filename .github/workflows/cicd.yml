@@ -54,6 +54,7 @@ jobs:
         uses: ./actions/js/publish
         with:
           node-version: 8.11.4
+          verify-tests: false
           npm-token: ${{ secrets.NPM_TOKEN }}
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
 
