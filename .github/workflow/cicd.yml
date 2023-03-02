@@ -16,7 +16,7 @@ jobs:
     if: github.repository != 'Exabyte-io/template-definitions'
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [8.x]
 
     steps:
       - name: Checkout this repository
@@ -53,7 +53,7 @@ jobs:
       - name: Publish JS release
         uses: ./actions/js/publish
         with:
-          node-version: 12.21.x
+          node-version: 8.11.4
           npm-token: ${{ secrets.NPM_TOKEN }}
           github-token: ${{ secrets.BOT_GITHUB_TOKEN }}
 
