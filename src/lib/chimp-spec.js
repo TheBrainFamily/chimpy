@@ -18,7 +18,6 @@ describe('Chimp', function () {
     td.replace('./mocha/mocha.js', {});
     td.replace('./jasmine/jasmine.js', {});
     td.replace('./cucumberjs/cucumber.js', {});
-    td.replace('./phantom.js', {});
     td.replace('./chromedriver.js', {});
     td.replace('./consoler.js', {});
     td.replace('./selenium.js', {});
