@@ -5,6 +5,5 @@
 .DS_Store
 .idea
 npm-debug.log
-src
 scripts
 tmp
