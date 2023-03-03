@@ -1,6 +1,6 @@
 {
-  "name": "chimpy",
-  "version": "3.0.4",
+  "name": "@exabyte-io/chimpy",
+  "version": "2023.3.2-3",
   "description": "Develop acceptance tests & end-to-end tests with realtime feedback.",
   "keywords": [
     "simian",
