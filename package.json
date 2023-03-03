@@ -28,7 +28,7 @@
   "scripts": {
     "watch": "npm-watch",
     "prepare": "npx babel src --ignore spec,__tests__/options-loader.js --out-dir ./dist",
-    "postinstall": "npm run prepare; cd ../.bin && ln -sf ../chimpy/bin/chimp.js chimp; ln -sf ../chimpy./bin/chimpy.js chimpy",
+    "postinstall": "npm run prepare; cd ../.bin && ln -sf ../chimpy/bin/chimp.js chimp; ln -sf ../chimpy/bin/chimpy.js chimpy",
     "lint": "eslint ./src",
     "lintfix": "eslint ./src --fix",
     "start": "node ./scripts/run.js",
