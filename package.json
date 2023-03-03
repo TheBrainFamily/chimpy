@@ -42,8 +42,8 @@
   },
   "main": "dist/lib/chimp.js",
   "bin": {
-    "chimp": "./bin/chimp.js",
-    "chimpy": "./bin/chimpy.js"
+    "@exabyte-io/chimp": "./bin/chimp.js",
+    "@exabyte-io/chimpy": "./bin/chimpy.js"
   },
   "mocha": {
     "files": [
