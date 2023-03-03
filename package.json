@@ -6,7 +6,6 @@
     "simian",
     "meteor",
     "bdd",
-    "atdd",
     "cucumber",
     "webdriverio",
     "selenium",
@@ -42,8 +41,8 @@
   },
   "main": "dist/lib/chimp.js",
   "bin": {
-    "@exabyte-io/chimp": "./bin/chimp.js",
-    "@exabyte-io/chimpy": "./bin/chimpy.js"
+    "chimp": "./bin/chimp.js",
+    "chimpy": "./bin/chimpy.js"
   },
   "mocha": {
     "files": [
@@ -87,13 +86,13 @@
     "chokidar": "^2.1.6",
     "colors": "1.1.2",
     "commander": "^2.20.0",
-    "cucumber": "https://github.com/TheBrainFamily/cucumber-js#v1.3.0-chimp.7",
+    "cucumber": "https://github.com/exabyte-io/cucumber-js#v1.3.0-chimp.7",
     "deep-extend": "^0.6.0",
     "exit": "^0.1.2",
     "fibers": "^3.1.0",
     "freeport": "~1.0.5",
     "fs-extra": "^1.0.0",
-    "glob": "https://github.com/lucetius/node-glob#chimp",
+    "glob": "https://github.com/exabyte-io/node-glob#chimp",
     "hapi": "8.8.0",
     "jasmine": "^2.99.0",
     "jsonfile": "^4.0.0",
