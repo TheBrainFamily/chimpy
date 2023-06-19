@@ -79,6 +79,7 @@
     "@babel/preset-env": "^7.8.4",
     "@babel/register": "^7.8.3",
     "@babel/runtime": "^7.8.4",
+    "@hapi/hapi": "20.0.0",
     "async": "~0.9.0",
     "bluebird": "^3.5.4",
     "chai": "~4.1.2",
@@ -87,14 +88,13 @@
     "chokidar": "^2.1.6",
     "colors": "1.1.2",
     "commander": "^2.20.0",
-    "cucumber": "https://github.com/exabyte-io/cucumber-js#v1.3.0-chimp.7",
+    "cucumber": "https://github.com/exabyte-io/cucumber-js#v1.3.0-chimp.8",
     "deep-extend": "^0.6.0",
     "exit": "^0.1.2",
-    "fibers": "^3.1.0",
+    "fibers": "^5.0.3",
     "freeport": "~1.0.5",
     "fs-extra": "^1.0.0",
     "glob": "https://github.com/exabyte-io/node-glob#chimp",
-    "hapi": "8.8.0",
     "jasmine": "^2.99.0",
     "jsonfile": "^4.0.0",
     "loglevel": "~1.4.0",
@@ -108,7 +108,7 @@
     "underscore": "~1.8.3",
     "xolvio-ddp": "^0.12.0",
     "xolvio-jasmine-expect": "^1.0.0",
-    "xolvio-sync-webdriverio": "10.0.0"
+    "xolvio-sync-webdriverio": "https://github.com/Exabyte-io/sync-webdriverio#fc9ced5cf44caf8581ad284096b3855aec8ddb17"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
